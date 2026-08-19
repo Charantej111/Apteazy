@@ -31,9 +31,6 @@ export default function Hero() {
     },
   };
 
-  const line1Text = "Run the apartment";
-  const line2Text = "Not the paperwork.!";
-
   return (
     <section className="relative pt-24 pb-16 md:pt-32 md:pb-24 bg-gradient-to-b from-[#FAF8FF] via-[#F4EFFE] to-[#EFEAFB] rounded-b-[48px] md:rounded-b-[72px] overflow-hidden shadow-[0_20px_50px_rgba(99,91,255,0.05)]">
       
@@ -45,44 +42,34 @@ export default function Hero() {
         {/* CENTERED HERO HEADER STAGE */}
         <div className="max-w-4xl mx-auto space-y-6">
           
-          {/* Centered Headline with Character Blur-In Typewriter Effect */}
-          <div className="space-y-1">
+          {/* Centered Headline with Uncropped Blur-In Effect */}
+          <div className="space-y-2 py-2 overflow-visible">
             {/* Line 1: "Run the apartment" */}
-            <div>
+            <div className="overflow-visible py-2 px-3">
               <motion.div 
-                variants={containerVariants}
-                initial="hidden"
-                animate="visible"
-                custom={1}
-                className="font-playball font-normal text-5xl sm:text-7xl md:text-8xl lg:text-[92px] leading-[1.05] tracking-normal inline-flex flex-wrap justify-center pb-1"
+                initial={{ opacity: 0, filter: 'blur(10px)', y: 16 }}
+                animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
+                transition={{ duration: 0.65, ease: [0.2, 0.65, 0.3, 0.9] }}
+                className="font-playball font-normal text-4xl sm:text-6xl md:text-7xl lg:text-[84px] leading-[1.25] tracking-normal inline-block py-2 px-4 overflow-visible"
                 style={{
                   backgroundImage: 'linear-gradient(135deg, #833BFD 0%, #635BFF 50%, #0F172A 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                 }}
               >
-                {line1Text.split('').map((char, index) => (
-                  <motion.span variants={letterVariants} key={index} className="inline-block">
-                    {char === ' ' ? '\u00A0' : char}
-                  </motion.span>
-                ))}
+                Run the apartment
               </motion.div>
             </div>
             
-            {/* Line 2: "Not the paperwork.!" */}
-            <div>
+            {/* Line 2: "Not the paperwork." */}
+            <div className="overflow-visible py-1 px-3">
               <motion.h1 
-                variants={containerVariants}
-                initial="hidden"
-                animate="visible"
-                custom={2.5}
-                className="font-playfair font-bold text-4xl sm:text-6xl md:text-[64px] lg:text-[72px] text-[#0F172A] tracking-[-0.025em] leading-[1.08] mt-1 inline-flex flex-wrap justify-center"
+                initial={{ opacity: 0, filter: 'blur(10px)', y: 16 }}
+                animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
+                transition={{ duration: 0.65, delay: 0.18, ease: [0.2, 0.65, 0.3, 0.9] }}
+                className="font-playfair font-bold text-3xl sm:text-5xl md:text-6xl lg:text-[68px] text-[#0F172A] tracking-[-0.025em] leading-[1.2] py-2 px-3 overflow-visible"
               >
-                {line2Text.split('').map((char, index) => (
-                  <motion.span variants={letterVariants} key={index} className="inline-block">
-                    {char === ' ' ? '\u00A0' : char}
-                  </motion.span>
-                ))}
+                Not the paperwork.
               </motion.h1>
             </div>
           </div>
