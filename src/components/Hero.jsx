@@ -43,14 +43,14 @@ export default function Hero() {
         <div className="max-w-4xl mx-auto space-y-6">
           
           {/* Centered Headline with Uncropped Blur-In Effect */}
-          <div className="space-y-2 py-2 overflow-visible">
+          <div className="space-y-0 sm:space-y-1 py-1 overflow-visible">
             {/* Line 1: "Run the apartment" */}
-            <div className="overflow-visible py-2 px-3">
+            <div className="overflow-visible">
               <motion.div 
                 initial={{ opacity: 0, filter: 'blur(10px)', y: 16 }}
                 animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
                 transition={{ duration: 0.65, ease: [0.2, 0.65, 0.3, 0.9] }}
-                className="font-playball font-normal text-4xl sm:text-6xl md:text-7xl lg:text-[84px] leading-[1.25] tracking-normal inline-block py-2 px-4 overflow-visible"
+                className="font-playball font-normal text-[36px] min-[380px]:text-[42px] sm:text-6xl md:text-7xl lg:text-[84px] leading-[1.05] sm:leading-[1.2] tracking-normal inline-block py-1 px-2 sm:py-2 sm:px-4 overflow-visible"
                 style={{
                   backgroundImage: 'linear-gradient(135deg, #833BFD 0%, #635BFF 50%, #0F172A 100%)',
                   WebkitBackgroundClip: 'text',
@@ -62,12 +62,12 @@ export default function Hero() {
             </div>
             
             {/* Line 2: "Not the paperwork." */}
-            <div className="overflow-visible py-1 px-3">
+            <div className="overflow-visible">
               <motion.h1 
                 initial={{ opacity: 0, filter: 'blur(10px)', y: 16 }}
                 animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
                 transition={{ duration: 0.65, delay: 0.18, ease: [0.2, 0.65, 0.3, 0.9] }}
-                className="font-playfair font-bold text-3xl sm:text-5xl md:text-6xl lg:text-[68px] text-[#0F172A] tracking-[-0.025em] leading-[1.2] py-2 px-3 overflow-visible"
+                className="font-playfair font-bold text-2xl min-[380px]:text-3xl sm:text-5xl md:text-6xl lg:text-[68px] text-[#0F172A] tracking-[-0.025em] leading-[1.05] sm:leading-[1.15] py-1 px-2 sm:py-2 sm:px-3 overflow-visible"
               >
                 Not the paperwork.
               </motion.h1>
