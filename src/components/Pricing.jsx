@@ -12,7 +12,7 @@ export default function Pricing() {
       name: 'Core',
       badge: 'Base Module',
       icon: Layers,
-      iconColor: 'bg-purple-100 text-[#635BFF]',
+      iconColor: 'bg-emerald-100 text-[#047857]',
       price: '₹299',
       unit: '/ month',
       subtitle: 'Base society management & automated accounting.',
@@ -23,7 +23,7 @@ export default function Pricing() {
         'Official digital notice board',
       ],
       ctaText: 'Get Started Free',
-      ctaClass: 'bg-[#635BFF] hover:bg-[#5249E0] text-white shadow-[0_2px_10px_rgba(99,91,255,0.25)]',
+      ctaClass: 'bg-[#047857] hover:bg-[#03543F] text-white shadow-[0_2px_10px_rgba(4,120,87,0.25)]',
     },
     {
       id: 'access',
@@ -48,7 +48,7 @@ export default function Pricing() {
       name: 'Facilities',
       badge: 'Add-On Module',
       icon: Wrench,
-      iconColor: 'bg-emerald-100 text-[#10B981]',
+      iconColor: 'bg-teal-100 text-[#0D9488]',
       price: '+₹49',
       unit: '/ month',
       subtitle: 'Amenity booking & maintenance ticket resolution.',
@@ -66,7 +66,7 @@ export default function Pricing() {
       name: 'Enterprise',
       badge: 'Custom Module',
       icon: Building,
-      iconColor: 'bg-amber-100 text-[#F59E0B]',
+      iconColor: 'bg-amber-100 text-[#D97706]',
       price: 'Enterprise',
       unit: '',
       subtitle: 'Tailored for large townships & multi-tower campuses.',
@@ -78,7 +78,7 @@ export default function Pricing() {
         'Multi-gate hardware integration',
       ],
       ctaText: 'Talk to Sales',
-      ctaClass: 'bg-slate-900 hover:bg-slate-800 text-white',
+      ctaClass: 'bg-[#0A261D] hover:bg-slate-900 text-white',
     },
   ];
 
@@ -94,11 +94,11 @@ export default function Pricing() {
           transition={{ duration: 0.6 }}
           className="text-center max-w-2xl mx-auto mb-14 space-y-2"
         >
-          <span className="text-[11.5px] font-bold uppercase tracking-widest text-[#635BFF]">
+          <span className="text-[11.5px] font-bold uppercase tracking-widest text-[#047857]">
             PRICING
           </span>
-          <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-[#0F172A] tracking-[-0.02em]">
-            Simple. <span className="text-[#635BFF]">Modular.</span> Transparent.
+          <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-[#0A261D] tracking-[-0.02em]">
+            Simple. <span className="text-[#047857]">Modular.</span> Transparent.
           </h2>
           <p className="text-[15px] text-slate-500 font-normal">
             Pay only for what your society needs. Add or remove modules anytime.

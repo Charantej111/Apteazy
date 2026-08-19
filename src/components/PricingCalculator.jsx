@@ -240,7 +240,7 @@ export default function PricingCalculator() {
                   )}
                   <div className="flex justify-between pt-2 border-t border-slate-200/60 text-slate-500 font-medium">
                     <span>Annual Total (2 mos FREE)</span>
-                    <span className="font-bold text-[#635BFF]">₹{annualTotal} / year</span>
+                    <span className="font-bold text-[#047857]">₹{annualTotal} / year</span>
                   </div>
                 </div>
               </div>
@@ -249,7 +249,7 @@ export default function PricingCalculator() {
               <div className="space-y-1.5 pt-1">
                 <button
                   onClick={() => openWhatsApp('Hi, I want to start a free trial of Apteazy for my apartment')}
-                  className="w-full inline-flex items-center justify-center gap-2 py-3 px-5 rounded-full bg-[#635BFF] hover:bg-[#5249E0] text-white font-semibold text-xs shadow-sm transition-all duration-150 cursor-pointer"
+                  className="w-full inline-flex items-center justify-center gap-2 py-3 px-5 rounded-full bg-[#047857] hover:bg-[#03543F] text-white font-semibold text-xs shadow-sm transition-all duration-150 cursor-pointer"
                 >
                   <span>Start 30-Day Free Trial</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -270,7 +270,7 @@ export default function PricingCalculator() {
             </span>
             <button
               onClick={() => openWhatsApp('Hi, I want to start a free trial of Apteazy for my apartment')}
-              className="font-bold text-[#635BFF] hover:text-purple-700 flex items-center gap-1 cursor-pointer bg-transparent border-0 p-0"
+              className="font-bold text-[#047857] hover:text-emerald-900 flex items-center gap-1 cursor-pointer bg-transparent border-0 p-0"
             >
               <span>Contact Enterprise Sales</span>
               <ArrowRight className="w-3.5 h-3.5" />

@@ -50,8 +50,8 @@ export default function ReferralBanner() {
             <div className="lg:col-span-7 space-y-5 text-left">
               
               <div className="space-y-1">
-                <h2 className="font-display text-3xl sm:text-4xl lg:text-[40px] font-extrabold text-[#0F172A] tracking-[-0.025em] leading-[1.15]">
-                  <span className="text-[#635BFF]">Love Apteazy?</span>
+                <h2 className="font-display text-3xl sm:text-4xl lg:text-[40px] font-extrabold text-[#0A261D] tracking-[-0.025em] leading-[1.15]">
+                  <span className="text-[#047857]">Love Apteazy?</span>
                   <br />
                   <span>Share with another apartment.</span>
                 </h2>

@@ -36,18 +36,18 @@ export default function Navbar() {
 
           {/* Center Navigation Links */}
           <div className="hidden md:flex items-center gap-8 text-[14px] font-semibold text-slate-700">
-            <a href="#features" className="flex items-center gap-1 hover:text-[#635BFF] transition-colors">
+            <a href="#features" className="flex items-center gap-1 hover:text-[#4F46E5] transition-colors">
               <span>Product</span>
               <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
             </a>
-            <a href="#solutions" className="flex items-center gap-1 hover:text-[#635BFF] transition-colors">
+            <a href="#solutions" className="flex items-center gap-1 hover:text-[#4F46E5] transition-colors">
               <span>Solutions</span>
               <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
             </a>
-            <a href="#pricing" className="hover:text-[#635BFF] transition-colors">
+            <a href="#pricing" className="hover:text-[#4F46E5] transition-colors">
               Pricing
             </a>
-            <a href="#calculator" className="flex items-center gap-1 hover:text-[#635BFF] transition-colors">
+            <a href="#calculator" className="flex items-center gap-1 hover:text-[#4F46E5] transition-colors">
               <span>Resources</span>
               <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
             </a>
@@ -63,7 +63,7 @@ export default function Navbar() {
             </button>
             <button
               onClick={() => openWhatsApp('Hi, I want to start a free trial of Apteazy for my apartment')}
-              className="inline-flex items-center gap-1.5 bg-[#635BFF] hover:bg-[#5249E0] text-white text-[13.5px] font-bold px-5 py-2.5 rounded-full shadow-[0_4px_14px_rgba(99,91,255,0.3)] transition-all duration-150 hover:-translate-y-0.5 cursor-pointer"
+              className="inline-flex items-center gap-1.5 bg-[#4F46E5] hover:bg-[#4338CA] text-white text-[13.5px] font-bold px-5 py-2.5 rounded-full shadow-[0_4px_14px_rgba(79,70,229,0.3)] transition-all duration-150 hover:-translate-y-0.5 cursor-pointer"
             >
               <span>Start Free Trial</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -130,7 +130,7 @@ export default function Navbar() {
                 setMobileMenuOpen(false);
                 openWhatsApp('Hi, I want to start a free trial of Apteazy for my apartment');
               }}
-              className="text-center py-2.5 text-sm font-bold bg-[#635BFF] text-white rounded-full shadow-md cursor-pointer"
+              className="text-center py-2.5 text-sm font-bold bg-[#4F46E5] text-white rounded-full shadow-md cursor-pointer"
             >
               Start Free Trial →
             </button>
