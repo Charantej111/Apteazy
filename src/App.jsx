@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import ProblemSolution from './components/ProblemSolution';
@@ -9,11 +9,14 @@ import PricingCalculator from './components/PricingCalculator';
 import ReferralBanner from './components/ReferralBanner';
 import Footer from './components/Footer';
 import FloatingWhatsApp from './components/FloatingWhatsApp';
+import LoginModal from './components/LoginModal';
 
 export default function App() {
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
+
   return (
     <div className="min-h-screen flex flex-col bg-[#FAF8FF] text-slate-900 font-sans selection:bg-purple-100 selection:text-purple-700">
-      <Navbar />
+      <Navbar onOpenLogin={() => setIsLoginOpen(true)} />
       <main className="flex-grow">
         <Hero />
         <ProblemSolution />
@@ -23,8 +26,9 @@ export default function App() {
         <PricingCalculator />
         <ReferralBanner />
       </main>
-      <Footer />
+      <Footer onOpenLogin={() => setIsLoginOpen(true)} />
       <FloatingWhatsApp />
+      <LoginModal isOpen={isLoginOpen} onClose={() => setIsLoginOpen(false)} />
     </div>
   );
 }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ChevronDown, Menu, X, ArrowRight } from 'lucide-react';
 import { openWhatsApp } from '../utils/whatsapp';
 
-export default function Navbar() {
+export default function Navbar({ onOpenLogin }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -56,7 +56,7 @@ export default function Navbar() {
           {/* Right Action Buttons */}
           <div className="hidden md:flex items-center gap-3">
             <button
-              onClick={() => openWhatsApp('Hi, I want to start a free trial of Apteazy for my apartment')}
+              onClick={onOpenLogin}
               className="text-[13.5px] font-bold text-slate-800 bg-white hover:bg-slate-50 border border-slate-300 px-5 py-2 rounded-xl transition-all shadow-subtle hover:border-slate-400 cursor-pointer"
             >
               Login
@@ -119,7 +119,7 @@ export default function Navbar() {
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
-                openWhatsApp('Hi, I want to start a free trial of Apteazy for my apartment');
+                if (onOpenLogin) onOpenLogin();
               }}
               className="text-center py-2 text-sm font-bold text-slate-800 border border-slate-300 rounded-xl cursor-pointer"
             >
