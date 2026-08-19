@@ -24,7 +24,7 @@ export default function ProblemSolution() {
   ];
 
   return (
-    <section id="solutions" className="py-16 md:py-24 bg-[#F9F9FB] overflow-hidden">
+    <section id="solutions" className="py-12 md:py-24 bg-[#F9F9FB] overflow-hidden">
       <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
@@ -33,7 +33,7 @@ export default function ProblemSolution() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-40px' }}
           transition={{ duration: 0.6 }}
-          className="text-center max-w-2xl mx-auto mb-12 sm:mb-16 space-y-2"
+          className="text-center max-w-2xl mx-auto mb-10 sm:mb-16 space-y-2"
         >
           <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-[#0F172A] tracking-[-0.025em]">
             From Chaos to Clarity
@@ -44,34 +44,34 @@ export default function ProblemSolution() {
         </motion.div>
 
         {/* 3-Column Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-4 items-stretch max-w-[1180px] mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-4 items-stretch max-w-[1180px] mx-auto">
           
-          {/* Left Card: Without Apteazy */}
+          {/* Left Card: Without Apteazy (Previous Desktop Style + Compact Mobile Style) */}
           <motion.div 
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-40px' }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="lg:col-span-5 bg-[#FFF5F5] rounded-[28px] p-6 sm:p-7 border border-[#FED7D7] shadow-sm flex flex-col justify-between relative overflow-hidden group min-h-[300px]"
+            className="lg:col-span-5 bg-[#FFF5F5] rounded-[28px] p-5 sm:p-7 border border-[#FED7D7] shadow-sm flex flex-col justify-between relative overflow-hidden group min-h-0 sm:min-h-[300px]"
           >
             {/* Ambient Radial Glow */}
-            <div className="absolute -bottom-6 -right-6 w-44 h-44 bg-red-200/50 rounded-full blur-2xl pointer-events-none" />
+            <div className="absolute -bottom-6 -right-6 w-44 h-44 bg-red-200/40 rounded-full blur-2xl pointer-events-none" />
 
-            <div className="flex items-center justify-between mb-4 relative z-10">
+            <div className="flex items-center justify-between mb-3.5 sm:mb-4 relative z-10">
               <span className="font-display text-base sm:text-lg font-bold text-slate-900 tracking-tight">
                 Without
               </span>
             </div>
 
-            <div className="flex flex-col sm:flex-row items-end justify-between gap-4 relative z-10">
+            <div className="flex flex-row items-end justify-between gap-3 sm:gap-4 relative z-10">
               {/* Bullet list */}
-              <div className="space-y-2.5 flex-1 self-center w-full mb-2 sm:mb-0">
+              <div className="space-y-2 sm:space-y-2.5 flex-1 self-center w-full">
                 {withoutItems.map((item, index) => (
-                  <div key={index} className="flex items-center gap-2.5">
+                  <div key={index} className="flex items-center gap-2 sm:gap-2.5">
                     <div className="w-4 h-4 rounded-full bg-red-100 text-red-600 flex items-center justify-center flex-shrink-0">
                       <X className="w-2.5 h-2.5 stroke-[3]" />
                     </div>
-                    <span className="text-[12.5px] sm:text-[13px] font-medium text-slate-700 leading-tight">
+                    <span className="text-[12px] sm:text-[13px] font-medium text-slate-700 leading-tight">
                       {item}
                     </span>
                   </div>
@@ -87,14 +87,14 @@ export default function ProblemSolution() {
                       transition={{ duration: 0.3 }}
                       src="/assets/receipts-mess.png"
                       alt="Paperwork clutter"
-                      className="max-h-36 sm:max-h-40 w-auto object-contain relative z-10"
+                      className="max-h-28 sm:max-h-36 lg:max-h-40 w-auto object-contain relative z-10"
                       onError={() => setReceiptErr(true)}
                     />
                     {/* Natural Ground Soft Floor Shadow */}
                     <div className="w-3/4 h-2 bg-red-900/15 blur-[3px] rounded-[100%] mx-auto -mt-1 pointer-events-none" />
                   </div>
                 ) : (
-                  <div className="text-4xl">🧾</div>
+                  <div className="text-3xl sm:text-4xl">🧾</div>
                 )}
               </div>
             </div>
@@ -106,7 +106,7 @@ export default function ProblemSolution() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: '-40px' }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="lg:col-span-2 flex items-center justify-center gap-1 my-2 lg:my-0 relative z-10"
+            className="lg:col-span-2 flex items-center justify-center gap-1 my-1 lg:my-0 relative z-10"
           >
             {/* Left Doodle Arrow */}
             <div className="hidden lg:block text-[#635BFF] flex-shrink-0 -mr-2">
@@ -117,7 +117,7 @@ export default function ProblemSolution() {
             </div>
 
             {/* Phone Screen Mockup */}
-            <div className="w-[160px] sm:w-[180px] flex-shrink-0 flex flex-col items-center">
+            <div className="w-[140px] sm:w-[175px] flex-shrink-0 flex flex-col items-center">
               {!phoneErr ? (
                 <div className="relative flex flex-col items-center">
                   <img
@@ -127,7 +127,7 @@ export default function ProblemSolution() {
                     onError={() => setPhoneErr(true)}
                   />
                   {/* Natural Phone Base Contact Shadow */}
-                  <div className="w-3/4 h-3 bg-[#635BFF]/20 blur-[4px] rounded-[100%] mx-auto -mt-2 pointer-events-none" />
+                  <div className="w-3/4 h-2.5 bg-[#635BFF]/20 blur-[4px] rounded-[100%] mx-auto -mt-2 pointer-events-none" />
                 </div>
               ) : (
                 <div className="bg-slate-900 rounded-[28px] p-4 text-white text-center text-xs">
@@ -145,32 +145,32 @@ export default function ProblemSolution() {
             </div>
           </motion.div>
 
-          {/* Right Card: With Apteazy */}
+          {/* Right Card: With Apteazy (Previous Desktop Style + Compact Mobile Style) */}
           <motion.div 
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-40px' }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="lg:col-span-5 bg-[#F0FDF4] rounded-[28px] p-6 sm:p-7 border border-[#BBF7D0] shadow-sm flex flex-col justify-between relative overflow-hidden group min-h-[300px]"
+            className="lg:col-span-5 bg-[#F0FDF4] rounded-[28px] p-5 sm:p-7 border border-[#BBF7D0] shadow-sm flex flex-col justify-between relative overflow-hidden group min-h-0 sm:min-h-[300px]"
           >
             {/* Ambient Radial Glow */}
-            <div className="absolute -bottom-6 -right-6 w-44 h-44 bg-emerald-200/50 rounded-full blur-2xl pointer-events-none" />
+            <div className="absolute -bottom-6 -right-6 w-44 h-44 bg-emerald-200/40 rounded-full blur-2xl pointer-events-none" />
 
-            <div className="flex items-center justify-between mb-4 relative z-10">
+            <div className="flex items-center justify-between mb-3.5 sm:mb-4 relative z-10">
               <span className="font-display text-base sm:text-lg font-bold text-slate-900 tracking-tight">
                 With Apteazy
               </span>
             </div>
 
-            <div className="flex flex-col sm:flex-row items-end justify-between gap-4 relative z-10">
+            <div className="flex flex-row items-end justify-between gap-3 sm:gap-4 relative z-10">
               {/* Bullet list */}
-              <div className="space-y-2.5 flex-1 self-center w-full mb-2 sm:mb-0">
+              <div className="space-y-2 sm:space-y-2.5 flex-1 self-center w-full">
                 {withItems.map((item, index) => (
-                  <div key={index} className="flex items-center gap-2.5">
+                  <div key={index} className="flex items-center gap-2 sm:gap-2.5">
                     <div className="w-4 h-4 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center flex-shrink-0">
                       <Check className="w-2.5 h-2.5 stroke-[3]" />
                     </div>
-                    <span className="text-[12.5px] sm:text-[13px] font-medium text-slate-700 leading-tight">
+                    <span className="text-[12px] sm:text-[13px] font-medium text-slate-700 leading-tight">
                       {item}
                     </span>
                   </div>
@@ -186,14 +186,14 @@ export default function ProblemSolution() {
                       transition={{ duration: 0.3 }}
                       src="/assets/peace-plant.png"
                       alt="Peace of mind"
-                      className="max-h-36 sm:max-h-40 w-auto object-contain relative z-10"
+                      className="max-h-28 sm:max-h-36 lg:max-h-40 w-auto object-contain relative z-10"
                       onError={() => setPlantErr(true)}
                     />
                     {/* Natural Ground Soft Floor Shadow */}
                     <div className="w-3/4 h-2 bg-emerald-900/15 blur-[3px] rounded-[100%] mx-auto -mt-1 pointer-events-none" />
                   </div>
                 ) : (
-                  <div className="text-4xl">🪴</div>
+                  <div className="text-3xl sm:text-4xl">🪴</div>
                 )}
               </div>
             </div>

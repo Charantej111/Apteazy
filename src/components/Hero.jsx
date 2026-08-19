@@ -1,11 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Calendar, Check, Play, Volume2, Maximize2, MoreVertical } from 'lucide-react';
+import { ArrowRight, Calendar, Check, Play, Pause, Volume2, Maximize2, MoreVertical } from 'lucide-react';
 import { openWhatsApp } from '../utils/whatsapp';
 
 export default function Hero() {
   const [videoError, setVideoError] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const videoRef = useRef(null);
+
+  const togglePlay = () => {
+    if (!videoRef.current) return;
+    if (isPlaying) {
+      videoRef.current.pause();
+      setIsPlaying(false);
+    } else {
+      videoRef.current.play();
+      setIsPlaying(true);
+    }
+  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -74,7 +86,7 @@ export default function Hero() {
               whileHover={{ scale: 1.03, y: -2 }}
               whileTap={{ scale: 0.98 }}
               onClick={() => openWhatsApp('Hi, I want to start a free trial of Apteazy for my apartment')}
-              className="px-7 py-3.5 rounded-full bg-[#635BFF] hover:bg-[#5249E0] text-white font-bold text-sm shadow-[0_8px_20px_rgba(99,91,255,0.35)] hover:shadow-[0_12px_28px_rgba(99,91,255,0.45)] transition-all cursor-pointer inline-flex items-center gap-2"
+              className="px-7 py-3.5 rounded-full bg-[#635BFF] hover:bg-[#5249E0] text-white font-bold text-sm shadow-md hover:shadow-lg transition-all cursor-pointer inline-flex items-center gap-2"
             >
               <span>Start 30–Day Free Trial</span>
               <ArrowRight className="w-4 h-4 stroke-[2.5]" />
@@ -128,14 +140,17 @@ export default function Hero() {
               <div className="w-0.5 h-0.5 rounded-full bg-slate-600" />
             </div>
 
-            {/* Video / PNG Display - Zoomed 14% to crop out watermarks cleanly */}
+            {/* Video Display - Bound to videoRef for Play/Pause toggle */}
             {!videoError ? (
               <video
+                ref={videoRef}
                 src="/assets/hero-building-3d.mp4"
+                poster="/assets/hero-building-3d.png"
                 autoPlay
                 loop
-                muted={!isPlaying}
+                muted
                 playsInline
+                preload="auto"
                 className="w-full h-full object-cover scale-[1.14] origin-center"
                 onError={() => setVideoError(true)}
               />
@@ -147,31 +162,35 @@ export default function Hero() {
               />
             )}
 
-            {/* CENTERED PURPLE PLAY BUTTON OVERLAY */}
-            <div className="absolute inset-0 flex items-center justify-center bg-slate-950/15 group-hover:bg-slate-950/25 transition-colors z-20 pointer-events-none">
+            {/* CENTERED PLAY / PAUSE BUTTON OVERLAY */}
+            <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 z-20 ${isPlaying ? 'opacity-0 group-hover:opacity-100 bg-slate-950/20' : 'opacity-100 bg-slate-950/30'}`}>
               <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => setIsPlaying(!isPlaying)}
+                onClick={togglePlay}
                 className="pointer-events-auto w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white hover:bg-white/95 text-[#635BFF] flex items-center justify-center shadow-2xl transition-transform duration-300 cursor-pointer"
-                aria-label="Play Video"
+                aria-label={isPlaying ? "Pause Video" : "Play Video"}
               >
-                <Play className="w-7 h-7 sm:w-8 sm:h-8 fill-[#635BFF] translate-x-[2px]" />
+                {isPlaying ? (
+                  <Pause className="w-7 h-7 sm:w-8 sm:h-8 fill-[#635BFF] text-[#635BFF]" />
+                ) : (
+                  <Play className="w-7 h-7 sm:w-8 sm:h-8 fill-[#635BFF] translate-x-[2px]" />
+                )}
               </motion.button>
             </div>
 
             {/* BOTTOM VIDEO PLAYER CONTROL BAR OVERLAY */}
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-slate-950/90 via-slate-950/50 to-transparent p-3 text-white flex items-center justify-between text-xs z-20">
-              <div className="flex items-center gap-2 text-[11px] font-mono text-slate-300">
-                <Play className="w-3 h-3 fill-white text-white" />
-                <span>0:00 / 0:45</span>
-              </div>
+              <button onClick={togglePlay} className="flex items-center gap-2 text-[11px] font-mono text-slate-300 hover:text-white cursor-pointer">
+                {isPlaying ? <Pause className="w-3 h-3 fill-white text-white" /> : <Play className="w-3 h-3 fill-white text-white" />}
+                <span>{isPlaying ? 'PLAYING' : 'PAUSED'}</span>
+              </button>
               {/* Progress Scrubber Line */}
               <div className="flex-1 mx-4 h-1 bg-white/20 rounded-full overflow-hidden">
-                <div className="w-1/3 h-full bg-[#635BFF] rounded-full" />
+                <div className={`h-full bg-[#635BFF] rounded-full transition-all duration-300 ${isPlaying ? 'w-2/3' : 'w-1/3'}`} />
               </div>
               <div className="flex items-center gap-3 text-slate-300">
-                <Volume2 className="w-3.5 h-3.5" />
+                <Volume2 className="w-3.5 h-3.5 opacity-50" />
                 <Maximize2 className="w-3.5 h-3.5" />
                 <MoreVertical className="w-3.5 h-3.5" />
               </div>
