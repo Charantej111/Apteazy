@@ -29,7 +29,7 @@ export default function AppShowcase() {
             }}
           />
 
-          {/* Background Wavy Lines from Reference Design */}
+          {/* Background Wavy Lines SVG */}
           <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[480px] h-[360px] pointer-events-none opacity-40 z-0">
             <svg className="w-full h-full stroke-purple-300" fill="none" viewBox="0 0 400 300">
               <path d="M50 300 C 150 200, 250 250, 350 150 C 400 100, 450 50, 500 0" strokeWidth="1.5" strokeDasharray="6 4" />
@@ -43,7 +43,7 @@ export default function AppShowcase() {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-6 items-center relative z-10">
             
-            {/* Left Column: Headline, Subtitle, Buttons, Badges */}
+            {/* Left Column: Clean Bold Headline, Subtitle, Buttons, Badges */}
             <div className="lg:col-span-6 space-y-6 text-left">
               
               {/* Main Headline */}
@@ -53,7 +53,7 @@ export default function AppShowcase() {
                 More community.
                 <br />
                 <span>That’s </span>
-                <span className="text-[#635BFF]">Apteazy.</span>
+                <span className="text-[#635BFF] font-extrabold">Apteazy.</span>
               </h2>
 
               {/* Subtitle */}
@@ -78,14 +78,14 @@ export default function AppShowcase() {
                 <motion.button
                   whileHover={{ scale: 1.03, y: -2 }}
                   whileTap={{ scale: 0.98 }}
-                  onClick={() => openWhatsApp('Hi, I want to start a free trial of Apteazy for my apartment')}
-                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-white hover:bg-slate-50 text-[#0F172A] font-bold text-[14px] border border-[#E2E8F0] shadow-[0_4px_16px_rgba(0,0,0,0.04)] transition-colors cursor-pointer"
+                  onClick={() => openWhatsApp('Hi, I want to book a demo of Apteazy for my apartment')}
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-white hover:bg-slate-50 text-[#0F172A] font-bold text-[14px] border border-[#E2E8F0] shadow-xs transition-colors cursor-pointer"
                 >
                   <span>Book a Demo</span>
                 </motion.button>
               </div>
 
-              {/* Bottom Feature Badges matching reference screenshot */}
+              {/* Bottom Feature Badges */}
               <div className="flex flex-wrap items-center gap-x-6 gap-y-2 pt-3 text-[12.5px] font-semibold text-slate-600">
                 <div className="flex items-center gap-1.5">
                   <div className="w-4 h-4 rounded-full bg-purple-100 text-[#635BFF] flex items-center justify-center">
@@ -109,20 +109,20 @@ export default function AppShowcase() {
 
             </div>
 
-            {/* Right Column: Dual Phone Mockups cleanly formatted from assets */}
-            <div className="lg:col-span-6 flex justify-center items-center gap-3 sm:gap-5 pt-6 lg:pt-0">
+            {/* Right Column: Perfectly Aligned Dual Phone Mockups with Soft Natural Shadows */}
+            <div className="lg:col-span-6 flex justify-center items-center gap-4 sm:gap-6 pt-6 lg:pt-0">
               
-              {/* Left Phone (Standing straight) */}
+              {/* Left Phone */}
               <motion.div 
                 whileHover={{ y: -6, scale: 1.02 }}
                 transition={{ duration: 0.3 }}
-                className="w-1/2 max-w-[240px] flex-shrink-0"
+                className="w-1/2 max-w-[230px] flex-shrink-0"
               >
                 {!leftErr ? (
                   <img
                     src="/assets/showcase-phone-left.png"
                     alt="Apteazy Resident Home Screen"
-                    className="w-full h-auto object-contain drop-shadow-[0_20px_40px_rgba(99,91,255,0.16)]"
+                    className="w-full h-auto object-contain filter drop-shadow-[0_14px_28px_rgba(15,23,42,0.1)] transition-all duration-300 hover:drop-shadow-[0_20px_35px_rgba(99,91,255,0.18)]"
                     onError={() => setLeftErr(true)}
                   />
                 ) : (
@@ -132,17 +132,17 @@ export default function AppShowcase() {
                 )}
               </motion.div>
 
-              {/* Right Phone (Slightly offset) */}
+              {/* Right Phone */}
               <motion.div 
                 whileHover={{ y: -6, scale: 1.02 }}
                 transition={{ duration: 0.3 }}
-                className="w-1/2 max-w-[240px] flex-shrink-0 pt-6"
+                className="w-1/2 max-w-[230px] flex-shrink-0"
               >
                 {!rightErr ? (
                   <img
                     src="/assets/showcase-phone-right.png"
                     alt="Apteazy Notices Screen"
-                    className="w-full h-auto object-contain drop-shadow-[0_20px_40px_rgba(99,91,255,0.16)]"
+                    className="w-full h-auto object-contain filter drop-shadow-[0_14px_28px_rgba(15,23,42,0.1)] transition-all duration-300 hover:drop-shadow-[0_20px_35px_rgba(99,91,255,0.18)]"
                     onError={() => setRightErr(true)}
                   />
                 ) : (
