@@ -12,7 +12,7 @@ import FloatingWhatsApp from './components/FloatingWhatsApp';
 
 export default function App() {
   return (
-    <div className="min-h-screen flex flex-col bg-[#FAF9F6] text-[#0A261D] font-sans selection:bg-emerald-100 selection:text-emerald-800">
+    <div className="min-h-screen flex flex-col bg-[#FAF8FF] text-slate-900 font-sans selection:bg-purple-100 selection:text-purple-700">
       <Navbar />
       <main className="flex-grow">
         <Hero />

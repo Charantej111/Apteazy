@@ -41,7 +41,7 @@ export default function Footer() {
             <div className="pt-2">
               <button
                 onClick={() => openWhatsApp('Hi, I want to start a free trial of Apteazy for my apartment')}
-                className="inline-flex items-center gap-2 bg-[#047857] hover:bg-[#03543F] text-white text-xs font-semibold px-5 py-2.5 rounded-full transition-colors shadow-sm cursor-pointer"
+                className="inline-flex items-center gap-2 bg-[#635BFF] hover:bg-[#5249E0] text-white text-xs font-semibold px-5 py-2.5 rounded-full transition-colors shadow-sm cursor-pointer"
               >
                 <span>Start Free Trial</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -87,11 +87,11 @@ export default function Footer() {
                 placeholder="Enter your committee email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="bg-slate-800/80 border border-slate-700 rounded-full px-4 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#047857] flex-1"
+                className="bg-slate-800/80 border border-slate-700 rounded-full px-4 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#635BFF] flex-1"
               />
               <button
                 type="submit"
-                className="bg-[#047857] hover:bg-[#03543F] text-white p-2.5 rounded-full transition-colors flex-shrink-0"
+                className="bg-[#635BFF] hover:bg-[#5249E0] text-white p-2.5 rounded-full transition-colors flex-shrink-0"
                 aria-label="Subscribe"
               >
                 {subscribed ? <Check className="w-3.5 h-3.5" /> : <Send className="w-3.5 h-3.5" />}

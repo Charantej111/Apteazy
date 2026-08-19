@@ -12,7 +12,7 @@ export default function FourPillars() {
     {
       id: 'finance',
       title: 'Financial Management',
-      titleColor: 'text-[#047857]',
+      titleColor: 'text-[#635BFF]',
       subtitle: 'Automated billing, instant receipts, expense tracking, and transparent society accounting.',
       image: '/assets/pillar-finance.png',
       features: [
