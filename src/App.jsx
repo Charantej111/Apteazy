@@ -8,10 +8,11 @@ import Pricing from './components/Pricing';
 import PricingCalculator from './components/PricingCalculator';
 import ReferralBanner from './components/ReferralBanner';
 import Footer from './components/Footer';
+import FloatingWhatsApp from './components/FloatingWhatsApp';
 
 export default function App() {
   return (
-    <div className="min-h-screen flex flex-col bg-[#F8F8FA] text-slate-900 font-sans selection:bg-brand-100 selection:text-brand-700">
+    <div className="min-h-screen flex flex-col bg-[#F8F8FA] text-slate-900 font-sans selection:bg-brand-100 selection:text-brand-[#635BFF]">
       <Navbar />
       <main className="flex-grow">
         <Hero />
@@ -23,6 +24,7 @@ export default function App() {
         <ReferralBanner />
       </main>
       <Footer />
+      <FloatingWhatsApp />
     </div>
   );
 }

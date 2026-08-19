@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Layers, Shield, Wrench, Building, Check } from 'lucide-react';
+import { openWhatsApp } from '../utils/whatsapp';
 
 export default function Pricing() {
   const [entErr, setEntErr] = useState(false);
@@ -175,14 +176,14 @@ export default function Pricing() {
                 </div>
 
                 {/* Button */}
-                <motion.a
+                <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  href="#calculator"
-                  className={`w-full py-2.5 px-4 rounded-full font-semibold text-[12.5px] text-center transition-all duration-150 block ${plan.ctaClass}`}
+                  onClick={() => openWhatsApp(`Hi, I want to start a free trial of Apteazy for my apartment (${plan.name} Plan)`)}
+                  className={`w-full py-2.5 px-4 rounded-full font-semibold text-[12.5px] text-center transition-all duration-150 block cursor-pointer ${plan.ctaClass}`}
                 >
                   {plan.ctaText}
-                </motion.a>
+                </motion.button>
 
               </motion.div>
             );

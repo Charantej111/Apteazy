@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowRight, Check, Send } from 'lucide-react';
+import { openWhatsApp } from '../utils/whatsapp';
 
 export default function Footer() {
   const [subscribed, setSubscribed] = useState(false);
@@ -38,13 +39,13 @@ export default function Footer() {
             </p>
 
             <div className="pt-2">
-              <a
-                href="#pricing"
-                className="inline-flex items-center gap-2 bg-[#7C3AED] hover:bg-[#6D28D9] text-white text-xs font-semibold px-5 py-2.5 rounded-full transition-colors shadow-sm"
+              <button
+                onClick={() => openWhatsApp('Hi, I want to start a free trial of Apteazy for my apartment')}
+                className="inline-flex items-center gap-2 bg-[#7C3AED] hover:bg-[#6D28D9] text-white text-xs font-semibold px-5 py-2.5 rounded-full transition-colors shadow-sm cursor-pointer"
               >
                 <span>Start Free Trial</span>
                 <ArrowRight className="w-3.5 h-3.5" />
-              </a>
+              </button>
             </div>
           </div>
 

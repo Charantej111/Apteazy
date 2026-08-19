@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronDown, Menu, X, ArrowRight } from 'lucide-react';
+import { openWhatsApp } from '../utils/whatsapp';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -54,19 +55,19 @@ export default function Navbar() {
 
           {/* Right Action Buttons */}
           <div className="hidden md:flex items-center gap-3">
-            <a
-              href="#login"
-              className="text-[13.5px] font-bold text-slate-800 bg-white hover:bg-slate-50 border border-slate-300 px-5 py-2 rounded-xl transition-all shadow-subtle hover:border-slate-400"
+            <button
+              onClick={() => openWhatsApp('Hi, I want to start a free trial of Apteazy for my apartment')}
+              className="text-[13.5px] font-bold text-slate-800 bg-white hover:bg-slate-50 border border-slate-300 px-5 py-2 rounded-xl transition-all shadow-subtle hover:border-slate-400 cursor-pointer"
             >
               Login
-            </a>
-            <a
-              href="#pricing"
-              className="inline-flex items-center gap-1.5 bg-[#635BFF] hover:bg-[#5249E0] text-white text-[13.5px] font-bold px-5 py-2.5 rounded-full shadow-[0_4px_14px_rgba(99,91,255,0.3)] transition-all duration-150 hover:-translate-y-0.5"
+            </button>
+            <button
+              onClick={() => openWhatsApp('Hi, I want to start a free trial of Apteazy for my apartment')}
+              className="inline-flex items-center gap-1.5 bg-[#635BFF] hover:bg-[#5249E0] text-white text-[13.5px] font-bold px-5 py-2.5 rounded-full shadow-[0_4px_14px_rgba(99,91,255,0.3)] transition-all duration-150 hover:-translate-y-0.5 cursor-pointer"
             >
               <span>Start Free Trial</span>
               <ArrowRight className="w-3.5 h-3.5" />
-            </a>
+            </button>
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -115,18 +116,24 @@ export default function Navbar() {
             Resources
           </a>
           <div className="pt-3 flex flex-col gap-2">
-            <a
-              href="#login"
-              className="text-center py-2 text-sm font-bold text-slate-800 border border-slate-300 rounded-xl"
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                openWhatsApp('Hi, I want to start a free trial of Apteazy for my apartment');
+              }}
+              className="text-center py-2 text-sm font-bold text-slate-800 border border-slate-300 rounded-xl cursor-pointer"
             >
               Login
-            </a>
-            <a
-              href="#pricing"
-              className="text-center py-2.5 text-sm font-bold bg-[#635BFF] text-white rounded-full shadow-md"
+            </button>
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                openWhatsApp('Hi, I want to start a free trial of Apteazy for my apartment');
+              }}
+              className="text-center py-2.5 text-sm font-bold bg-[#635BFF] text-white rounded-full shadow-md cursor-pointer"
             >
               Start Free Trial →
-            </a>
+            </button>
           </div>
         </div>
       )}

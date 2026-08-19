@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, CheckCircle2, ShieldCheck, Clock } from 'lucide-react';
+import { openWhatsApp } from '../utils/whatsapp';
 
 export default function AppShowcase() {
   const [leftErr, setLeftErr] = useState(false);
@@ -63,25 +64,25 @@ export default function AppShowcase() {
               {/* Action Buttons */}
               <div className="flex flex-wrap items-center gap-3.5 pt-1">
                 {/* Primary Button */}
-                <motion.a
+                <motion.button
                   whileHover={{ scale: 1.03, y: -2 }}
                   whileTap={{ scale: 0.98 }}
-                  href="#pricing"
-                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-[#635BFF] hover:bg-[#5249E0] text-white font-bold text-[14px] shadow-[0_4px_16px_rgba(99,91,255,0.3)] transition-colors"
+                  onClick={() => openWhatsApp('Hi, I want to start a free trial of Apteazy for my apartment')}
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-[#635BFF] hover:bg-[#5249E0] text-white font-bold text-[14px] shadow-[0_4px_16px_rgba(99,91,255,0.3)] transition-colors cursor-pointer"
                 >
                   <span>Start 30-Day Free Trial</span>
                   <ArrowRight className="w-4 h-4 stroke-[2.5]" />
-                </motion.a>
+                </motion.button>
 
                 {/* Secondary Button */}
-                <motion.a
+                <motion.button
                   whileHover={{ scale: 1.03, y: -2 }}
                   whileTap={{ scale: 0.98 }}
-                  href="#demo"
-                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-white hover:bg-slate-50 text-[#0F172A] font-bold text-[14px] border border-[#E2E8F0] shadow-[0_4px_16px_rgba(0,0,0,0.04)] transition-colors"
+                  onClick={() => openWhatsApp('Hi, I want to start a free trial of Apteazy for my apartment')}
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-white hover:bg-slate-50 text-[#0F172A] font-bold text-[14px] border border-[#E2E8F0] shadow-[0_4px_16px_rgba(0,0,0,0.04)] transition-colors cursor-pointer"
                 >
                   <span>Book a Demo</span>
-                </motion.a>
+                </motion.button>
               </div>
 
               {/* Bottom Feature Badges matching reference screenshot */}

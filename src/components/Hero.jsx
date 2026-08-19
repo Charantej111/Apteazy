@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Play, Check } from 'lucide-react';
+import { openWhatsApp } from '../utils/whatsapp';
 
 export default function Hero() {
   const [videoError, setVideoError] = useState(false);
@@ -103,27 +104,27 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.7 }}
             className="flex flex-wrap items-center justify-center gap-4 pt-2"
           >
-            <motion.a
+            <motion.button
               whileHover={{ scale: 1.04, y: -2 }}
               whileTap={{ scale: 0.98 }}
-              href="#pricing"
-              className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-[#635BFF] hover:bg-[#5249E0] text-white font-bold text-[15px] shadow-[0_8px_24px_rgba(99,91,255,0.35)] hover:shadow-[0_12px_32px_rgba(99,91,255,0.45)] transition-all duration-300"
+              onClick={() => openWhatsApp('Hi, I want to start a free trial of Apteazy for my apartment')}
+              className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-[#635BFF] hover:bg-[#5249E0] text-white font-bold text-[15px] shadow-[0_8px_24px_rgba(99,91,255,0.35)] hover:shadow-[0_12px_32px_rgba(99,91,255,0.45)] transition-all duration-300 cursor-pointer"
             >
               <span>Start 30–Day Free Trial</span>
               <ArrowRight className="w-4 h-4 stroke-[2.5]" />
-            </motion.a>
+            </motion.button>
 
-            <motion.a
+            <motion.button
               whileHover={{ scale: 1.04, y: -2 }}
               whileTap={{ scale: 0.98 }}
-              href="#demo"
-              className="inline-flex items-center gap-2.5 px-7 py-4 rounded-full bg-white/90 hover:bg-white text-[#0F172A] font-bold text-[14.5px] border border-[#E2E8F0] shadow-sm backdrop-blur-md transition-all duration-200"
+              onClick={() => openWhatsApp('Hi, I want to start a free trial of Apteazy for my apartment')}
+              className="inline-flex items-center gap-2.5 px-7 py-4 rounded-full bg-white/90 hover:bg-white text-[#0F172A] font-bold text-[14.5px] border border-[#E2E8F0] shadow-sm backdrop-blur-md transition-all duration-200 cursor-pointer"
             >
               <div className="w-5 h-5 rounded-full bg-[#635BFF] text-white flex items-center justify-center">
                 <Play className="w-2.5 h-2.5 fill-white text-white translate-x-[0.5px]" />
               </div>
               <span>Book a Demo</span>
-            </motion.a>
+            </motion.button>
           </motion.div>
 
           {/* Centered Trust Badges */}

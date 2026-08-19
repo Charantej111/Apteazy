@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Shield, Wrench, MessageSquare, ArrowRight, BarChart3 } from 'lucide-react';
+import { openWhatsApp } from '../utils/whatsapp';
 
 export default function PricingCalculator() {
   const [flats, setFlats] = useState(50);
@@ -246,13 +247,13 @@ export default function PricingCalculator() {
 
               {/* Action */}
               <div className="space-y-1.5 pt-1">
-                <a
-                  href="#pricing"
-                  className="w-full inline-flex items-center justify-center gap-2 py-3 px-5 rounded-full bg-[#635BFF] hover:bg-[#5249E0] text-white font-semibold text-xs shadow-sm transition-all duration-150"
+                <button
+                  onClick={() => openWhatsApp('Hi, I want to start a free trial of Apteazy for my apartment')}
+                  className="w-full inline-flex items-center justify-center gap-2 py-3 px-5 rounded-full bg-[#635BFF] hover:bg-[#5249E0] text-white font-semibold text-xs shadow-sm transition-all duration-150 cursor-pointer"
                 >
                   <span>Start 30-Day Free Trial</span>
                   <ArrowRight className="w-3.5 h-3.5" />
-                </a>
+                </button>
                 <div className="text-center text-[10.5px] text-slate-400">
                   No credit card required • Instant setup
                 </div>
@@ -267,13 +268,13 @@ export default function PricingCalculator() {
             <span className="text-slate-500">
               Need custom hardware integration or have 300+ flats?
             </span>
-            <a
-              href="#contact"
-              className="font-bold text-[#635BFF] hover:text-purple-700 flex items-center gap-1"
+            <button
+              onClick={() => openWhatsApp('Hi, I want to start a free trial of Apteazy for my apartment')}
+              className="font-bold text-[#635BFF] hover:text-purple-700 flex items-center gap-1 cursor-pointer bg-transparent border-0 p-0"
             >
               <span>Contact Enterprise Sales</span>
               <ArrowRight className="w-3.5 h-3.5" />
-            </a>
+            </button>
           </div>
 
         </div>
