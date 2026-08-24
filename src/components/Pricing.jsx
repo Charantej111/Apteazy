@@ -88,7 +88,7 @@ export default function Pricing() {
       color: 'bg-blue-50 text-blue-600 border-blue-100',
     },
     {
-      name: 'Facility & Helpdesk',
+      name: 'Facilities',
       price: '+₹49/mo',
       desc: 'Clubhouse booking, photo ticket tracker, vendor AMC contracts',
       icon: Wrench,

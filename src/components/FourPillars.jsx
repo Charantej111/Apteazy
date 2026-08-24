@@ -50,7 +50,7 @@ export default function FourPillars() {
     },
     {
       id: 'facilities',
-      title: 'Facility & Helpdesk',
+      title: 'Facilities',
       titleColor: 'text-[#3B82F6]',
       subtitle: 'Book clubhouses, amenities, and raise maintenance complaints with real-time tracking.',
       image: '/assets/pillar-maintenance.png',
@@ -66,9 +66,9 @@ export default function FourPillars() {
   return (
     <section id="features" className="py-16 md:py-24 bg-white overflow-hidden">
       <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
-        
+
         {/* Section Header */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-40px' }}
