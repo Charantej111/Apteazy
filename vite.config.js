@@ -13,52 +13,52 @@ export default defineConfig(({ command, mode }) => {
       // Production-only asset compression plugins (strictly disabled in local dev for instant HMR)
       ...(isProduction
         ? [
-            // Gzip compression for JS, CSS, HTML, SVG, and static assets
-            compression({
-              algorithm: 'gzip',
-              exclude: [/\.(br)$/, /\.(gz)$/],
-              threshold: 1024,
-            }),
-            // Brotli compression for superior production transfer compression
-            compression({
-              algorithm: 'brotliCompress',
-              exclude: [/\.(br)$/, /\.(gz)$/],
-              threshold: 1024,
-            }),
-            // High-efficiency Image compression for public/dist assets (PNG, JPG, WebP, SVG)
-            ViteImageOptimizer({
-              png: {
-                quality: 80,
-                compressionLevel: 8,
-              },
-              jpeg: {
-                quality: 80,
-              },
-              jpg: {
-                quality: 80,
-              },
-              webp: {
-                quality: 80,
-              },
-              svg: {
-                multipass: true,
-                plugins: [
-                  {
-                    name: 'preset-default',
-                    params: {
-                      overrides: {
-                        cleanupNumericValues: false,
-                      },
+          // Gzip compression for JS, CSS, HTML, SVG, and static assets
+          compression({
+            algorithm: 'gzip',
+            exclude: [/\.(br)$/, /\.(gz)$/],
+            threshold: 1024,
+          }),
+          // Brotli compression for superior production transfer compression
+          compression({
+            algorithm: 'brotliCompress',
+            exclude: [/\.(br)$/, /\.(gz)$/],
+            threshold: 1024,
+          }),
+          // High-efficiency Image compression for public/dist assets (PNG, JPG, WebP, SVG)
+          ViteImageOptimizer({
+            png: {
+              quality: 80,
+              compressionLevel: 8,
+            },
+            jpeg: {
+              quality: 80,
+            },
+            jpg: {
+              quality: 80,
+            },
+            webp: {
+              quality: 80,
+            },
+            svg: {
+              multipass: true,
+              plugins: [
+                {
+                  name: 'preset-default',
+                  params: {
+                    overrides: {
+                      cleanupNumericValues: false,
                     },
                   },
-                ],
-              },
-            }),
-          ]
+                },
+              ],
+            },
+          }),
+        ]
         : []),
     ],
     server: {
-      port: 3000,
+
       open: true,
       watch: {
         ignored: ['**/*.mp4']

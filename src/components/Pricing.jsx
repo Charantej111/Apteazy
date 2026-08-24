@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Building2, Check, Shield, Wrench, MessageSquare, ArrowRight } from 'lucide-react';
+import { Building2, Check, Shield, Wrench, ArrowRight } from 'lucide-react';
 import { openWhatsApp } from '../utils/whatsapp';
 
 export default function Pricing() {
@@ -9,33 +9,33 @@ export default function Pricing() {
   const plans = [
     {
       id: 'tier-20',
-      flats: 'Up to 20 Flats',
       name: 'Starter',
-      price: '₹ 299',
-      unit: '/month',
-      billedYearly: '₹2,990 billed yearly',
+      flats: '1–20 Flats',
+      rate: '₹15',
+      unit: '/ flat / mo',
+      desc: 'Up to ₹300/month',
       popular: false,
       features: [
         'Resident & flat directory',
         'Automated maintenance billing',
         'Online UPI / card payments',
-        'Official digital notice board',
+        'Digital notice board',
       ],
       ctaText: 'Start free trial',
       ctaClass: 'bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 shadow-sm',
     },
     {
       id: 'tier-50',
-      flats: '21–50 Flats',
       name: 'Growth',
+      flats: '21–50 Flats',
       badge: 'MOST POPULAR',
-      price: '₹ 499',
-      unit: '/month',
-      billedYearly: '₹4,990 billed yearly',
+      rate: '₹12',
+      unit: '/ flat / mo',
+      desc: '₹312 – ₹660/month',
       popular: true,
       features: [
         'Everything in Starter',
-        'Automated billing & invoices for 50 flats',
+        'Automated billing & invoices',
         'Defaulter tracking & reminders',
         'Community notices & polls',
       ],
@@ -44,37 +44,37 @@ export default function Pricing() {
     },
     {
       id: 'tier-100',
-      flats: '51–100 Flats',
       name: 'Pro',
-      price: '₹ 899',
-      unit: '/month',
-      billedYearly: '₹8,990 billed yearly',
+      flats: '51–100 Flats',
+      rate: '₹10',
+      unit: '/ flat / mo',
+      desc: '₹670 – ₹1,160/month',
       popular: false,
       features: [
         'Everything in Growth',
         'Multi-admin roles & permissions',
         'Bulk ledger & Tally-ready exports',
-        'Priority email & chat support',
+        'Priority email & phone support',
       ],
       ctaText: 'Start free trial',
       ctaClass: 'bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 shadow-sm',
     },
     {
-      id: 'enterprise',
-      flats: '100+ Flats',
-      name: 'Enterprise',
-      price: 'Custom',
-      unit: '',
-      billedYearly: 'Volume discounts & SLAs',
+      id: 'tier-enterprise',
+      name: 'Scale',
+      flats: '101+ Flats',
+      rate: '₹8',
+      unit: '/ flat / mo',
+      desc: 'From ₹1,168/month',
       popular: false,
       image: '/assets/enterprise-building.svg',
       features: [
+        'Everything in Pro',
         'Dedicated account manager',
         'Custom ERP & Tally sync',
-        '24/7 SLA & priority phone support',
-        'Multi-gate hardware integration',
+        'Multi-gate hardware support',
       ],
-      ctaText: 'Talk to Sales',
+      ctaText: 'Start free trial',
       ctaClass: 'bg-slate-900 hover:bg-slate-800 text-white',
     },
   ];
@@ -94,40 +94,37 @@ export default function Pricing() {
       icon: Wrench,
       color: 'bg-emerald-50 text-emerald-600 border-emerald-100',
     },
-    {
-      name: 'WhatsApp & SMS Alerts',
-      price: '+₹49/mo',
-      desc: 'Instant invoice & payment link alerts directly on residents\' WhatsApp',
-      icon: MessageSquare,
-      color: 'bg-amber-50 text-amber-600 border-amber-100',
-    },
   ];
 
   return (
     <section id="pricing" className="py-16 md:py-24 bg-white overflow-hidden">
       <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
-        
+
         {/* Header */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-40px' }}
           transition={{ duration: 0.6 }}
-          className="text-center max-w-2xl mx-auto mb-14 space-y-2"
+          className="text-center max-w-2xl mx-auto mb-10 space-y-2"
         >
-          <span className="text-[11.5px] font-bold uppercase tracking-widest text-[#635BFF]">
-            PRICING
-          </span>
           <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-[#0F172A] tracking-[-0.02em]">
-            Simple. <span className="text-[#635BFF]">Flat-Based.</span> Transparent.
+            Simple, transparent pricing.
           </h2>
-          <p className="text-[15px] text-slate-500 font-normal">
-            Fair, scalable pricing tailored to your apartment's unit count. No hidden setup fees.
+          <p className="text-base text-slate-500 font-normal">
+            Pay less per flat as your community grows. Rates apply progressively per bracket.
           </p>
+
+          {/* Simple Example Callout */}
+          <div className="pt-2">
+            <span className="inline-block text-xs text-slate-500 bg-slate-100 rounded-full px-4 py-1.5 font-medium">
+              Example: A 50-flat society pays <strong className="text-slate-800">20 × ₹15</strong> + <strong className="text-slate-800">30 × ₹12</strong> = <strong className="text-[#635BFF]">₹660/month</strong>
+            </span>
+          </div>
         </motion.div>
 
         {/* 4 Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-4 items-stretch">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-2 items-stretch">
           {plans.map((plan, idx) => {
             return (
               <motion.div
@@ -136,12 +133,11 @@ export default function Pricing() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-30px' }}
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
-                whileHover={{ y: -6, boxShadow: "0 16px 32px rgba(99,91,255,0.08)" }}
-                className={`relative bg-white rounded-[24px] p-6 transition-all duration-300 flex flex-col justify-between ${
-                  plan.popular
-                    ? 'border-2 border-[#635BFF] shadow-lg shadow-purple-500/10'
-                    : 'border border-[#E8E5F3] shadow-sm'
-                }`}
+                whileHover={{ y: -6, boxShadow: '0 16px 32px rgba(99,91,255,0.08)' }}
+                className={`relative bg-white rounded-[24px] p-6 transition-all duration-300 flex flex-col justify-between ${plan.popular
+                  ? 'border-2 border-[#635BFF] shadow-lg shadow-purple-500/10'
+                  : 'border border-[#E8E5F3] shadow-sm'
+                  }`}
               >
                 {/* Most Popular Badge */}
                 {plan.popular && (
@@ -153,29 +149,30 @@ export default function Pricing() {
                 <div>
                   {/* Flat Count Header */}
                   <div className="mb-3">
-                    <span className="text-sm font-semibold text-slate-600 block">
+                    <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block">
+                      {plan.name}
+                    </span>
+                    <span className="text-sm font-bold text-slate-800 block mt-0.5">
                       {plan.flats}
                     </span>
                   </div>
 
-                  {/* Price */}
+                  {/* Rate */}
                   <div className="flex items-baseline gap-1 my-1">
                     <span className="font-display text-3xl sm:text-4xl font-extrabold text-[#0F172A] tracking-tight">
-                      {plan.price}
+                      {plan.rate}
                     </span>
-                    {plan.unit && (
-                      <span className="text-sm text-slate-400 font-medium">{plan.unit}</span>
-                    )}
+                    <span className="text-xs text-slate-400 font-medium">{plan.unit}</span>
                   </div>
 
-                  {/* Yearly Billing */}
-                  <p className="text-xs text-slate-400 font-medium mb-5">
-                    {plan.billedYearly}
+                  {/* Subtext */}
+                  <p className="text-xs font-semibold text-slate-500 mb-5">
+                    {plan.desc}
                   </p>
 
                   {/* Enterprise Graphic if applicable */}
-                  {plan.id === 'enterprise' && (
-                    <div className="w-full h-12 flex items-center justify-center p-1 mb-2">
+                  {plan.image && (
+                    <div className="w-full h-10 flex items-center justify-center p-1 mb-2">
                       {!entErr ? (
                         <img
                           src={plan.image}
@@ -184,7 +181,7 @@ export default function Pricing() {
                           onError={() => setEntErr(true)}
                         />
                       ) : (
-                        <Building2 className="w-7 h-7 text-amber-500" />
+                        <Building2 className="w-6 h-6 text-amber-500" />
                       )}
                     </div>
                   )}
@@ -204,12 +201,15 @@ export default function Pricing() {
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  onClick={() => openWhatsApp(`Hi, I want to start a free trial of Apteazy for my apartment (${plan.flats} Plan)`)}
+                  onClick={() =>
+                    openWhatsApp(
+                      `Hi, I want to start a 30-day free trial of Apteazy for my apartment (${plan.flats} ${plan.name} Plan)`
+                    )
+                  }
                   className={`w-full py-2.5 px-4 rounded-full font-semibold text-[13px] text-center transition-all duration-150 block cursor-pointer ${plan.ctaClass}`}
                 >
                   {plan.ctaText}
                 </motion.button>
-
               </motion.div>
             );
           })}
@@ -219,14 +219,11 @@ export default function Pricing() {
         <div className="mt-14 p-6 sm:p-8 rounded-[24px] bg-[#FAF9FD] border border-[#E8E5F3]">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-6">
             <div>
-              <span className="text-[11px] font-bold uppercase tracking-wider text-[#635BFF]">
-                Optional Add-Ons
-              </span>
               <h3 className="font-display text-xl font-bold text-[#0F172A]">
-                Power up with modular add-ons
+                Optional Add-Ons
               </h3>
-              <p className="text-xs text-slate-500">
-                Attach security, clubhouse booking, or WhatsApp alerts to any base flat tier.
+              <p className="text-xs text-slate-500 mt-0.5">
+                Attach security or facility management to your core plan.
               </p>
             </div>
             <a
@@ -238,7 +235,7 @@ export default function Pricing() {
             </a>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl">
             {addons.map((addon, i) => {
               const Icon = addon.icon;
               return (
@@ -246,7 +243,9 @@ export default function Pricing() {
                   key={i}
                   className="bg-white rounded-[18px] p-4 border border-[#EBE8F5] shadow-xs flex items-start gap-3.5"
                 >
-                  <div className={`w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 border ${addon.color}`}>
+                  <div
+                    className={`w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 border ${addon.color}`}
+                  >
                     <Icon className="w-4 h-4" />
                   </div>
                   <div className="flex-1 min-w-0">

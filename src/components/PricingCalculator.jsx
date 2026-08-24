@@ -1,159 +1,129 @@
 import React, { useState } from 'react';
-import { Shield, Wrench, MessageSquare, ArrowRight, BarChart3, CheckCircle2, Sparkles } from 'lucide-react';
+import { Shield, Wrench, ArrowRight, CheckCircle2, Sparkles } from 'lucide-react';
+import { calculateProgressivePrice } from '../utils/pricing';
 import { openWhatsApp } from '../utils/whatsapp';
 
 export default function PricingCalculator() {
-  const [flats, setFlats] = useState(40);
+  const [flats, setFlats] = useState(50);
   const [hasSecurity, setHasSecurity] = useState(true);
   const [hasFacility, setHasFacility] = useState(true);
-  const [hasWhatsapp, setHasWhatsapp] = useState(false);
 
   const SECURITY_PRICE = 99;
   const FACILITY_PRICE = 49;
-  const WHATSAPP_PRICE = 49;
 
-  // Base price dynamically computed based on flat count tiers
-  const isEnterprise = flats > 100;
-  
-  const getCoreBasePrice = (flatCount) => {
-    if (flatCount <= 20) return 299;
-    if (flatCount <= 50) return 499;
-    if (flatCount <= 100) return 899;
-    return null;
-  };
-
-  const getTierLabel = (flatCount) => {
-    if (flatCount <= 20) return 'Up to 20 Flats Tier';
-    if (flatCount <= 50) return '21–50 Flats Tier';
-    if (flatCount <= 100) return '51–100 Flats Tier';
-    return '100+ Flats Enterprise';
-  };
-
-  const coreBasePrice = getCoreBasePrice(flats);
+  const pricing = calculateProgressivePrice(flats);
 
   const addonsTotal =
     (hasSecurity ? SECURITY_PRICE : 0) +
-    (hasFacility ? FACILITY_PRICE : 0) +
-    (hasWhatsapp ? WHATSAPP_PRICE : 0);
+    (hasFacility ? FACILITY_PRICE : 0);
 
-  const monthlyTotal = isEnterprise ? null : coreBasePrice + addonsTotal;
-  const annualTotal = isEnterprise ? null : monthlyTotal * 10;
-  const perFlatMonthly = isEnterprise ? null : (monthlyTotal / flats).toFixed(2);
+  const monthlyTotal = pricing.total + addonsTotal;
+  const annualTotal = monthlyTotal * 10;
 
-  const handleWhatsAppTrial = () => {
-    if (isEnterprise) {
-      openWhatsApp(`Hi, I am interested in Enterprise pricing for Apteazy for my apartment complex with ${flats}+ flats.`);
-    } else {
-      const activeAddons = [];
-      if (hasSecurity) activeAddons.push('Gate Security (₹99)');
-      if (hasFacility) activeAddons.push('Facilities (₹49)');
-      if (hasWhatsapp) activeAddons.push('WhatsApp Alerts (₹49)');
-      const addonStr = activeAddons.length > 0 ? ` with ${activeAddons.join(', ')}` : '';
-      openWhatsApp(
-        `Hi, I want to start a 30-day free trial of Apteazy for my apartment (${flats} flats, Base: ₹${coreBasePrice}/mo${addonStr}, Total: ₹${monthlyTotal}/mo).`
-      );
-    }
+  const handleStartTrial = () => {
+    const activeAddons = [];
+    if (hasSecurity) activeAddons.push('Security (₹99/mo)');
+    if (hasFacility) activeAddons.push('Facilities (₹49/mo)');
+    const addonText = activeAddons.length > 0 ? ` with ${activeAddons.join(', ')}` : '';
+
+    openWhatsApp(
+      `Hi, I want to start a 30-day free trial of Apteazy for my society (${flats} flats, Base: ₹${pricing.total}/mo${addonText}, Total: ₹${monthlyTotal}/mo).`
+    );
   };
 
   return (
-    <section id="calculator" className="py-12 md:py-16 bg-[#FAFAFC] overflow-hidden">
-      <div className="max-w-[1140px] mx-auto px-4 sm:px-6">
-        
-        {/* Main Calculator Card */}
-        <div className="bg-white rounded-[28px] p-6 sm:p-8 border border-[#E5E7EB] shadow-sm">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            
-            {/* Left Column: Controls */}
-            <div className="lg:col-span-7 space-y-5">
+    <section id="calculator" className="py-16 md:py-20 bg-[#FAFAFC] overflow-hidden">
+      <div className="max-w-[1100px] mx-auto px-4 sm:px-6">
+
+        {/* Main Card */}
+        <div className="bg-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-slate-200 shadow-sm">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+
+            {/* Left Controls */}
+            <div className="lg:col-span-7 space-y-6">
               <div>
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-[#635BFF]">
-                    Interactive Estimator
-                  </span>
-                  <span className="text-[10px] font-bold bg-purple-100 text-[#635BFF] px-2 py-0.5 rounded-full">
-                    Auto-scaling Base Price
-                  </span>
-                </div>
-                <h3 className="font-display text-2xl font-bold text-[#0F172A] tracking-tight">
+                <h3 className="font-display text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
                   Pricing Calculator
                 </h3>
-                <p className="text-[13px] text-slate-500 mt-0.5">
-                  Base rate adjusts automatically based on flat count. Toggle optional modules as needed.
+                <p className="text-sm text-slate-500 mt-1">
+                  Rates decrease progressively as your society size increases.
                 </p>
               </div>
 
-              {/* Slider Block */}
-              <div className="bg-[#F8F9FA] rounded-[20px] p-5 border border-[#E5E7EB]">
-                <div className="flex items-center justify-between mb-2">
-                  <div className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-[#635BFF]" />
-                    <span className="text-xs font-bold text-slate-800">Flats / Units Count</span>
-                    <span className="text-[10.5px] font-semibold text-[#635BFF] bg-purple-50 border border-purple-200 px-2 py-0.5 rounded-full">
-                      {getTierLabel(flats)}
+              {/* Slider Box */}
+              <div className="bg-slate-50 rounded-2xl p-5 sm:p-6 border border-slate-200">
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-xs font-bold text-slate-700 uppercase tracking-wide">
+                    Number of Flats
+                  </span>
+                  <div className="flex items-baseline gap-1">
+                    <span className="font-display text-3xl font-extrabold text-[#635BFF]">
+                      {flats}
                     </span>
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    <BarChart3 className="w-4 h-4 text-[#635BFF]" />
-                    <span className="font-display text-2xl font-extrabold text-[#635BFF]">
-                      {flats > 100 ? '100+' : flats}
-                    </span>
-                    <span className="text-xs font-medium text-slate-500">Flats</span>
+                    <span className="text-xs font-semibold text-slate-500">Flats</span>
                   </div>
                 </div>
 
                 <input
                   type="range"
-                  min="10"
-                  max="110"
-                  step="5"
+                  min="5"
+                  max="200"
+                  step="1"
                   value={flats}
-                  onChange={(e) => setFlats(Number(e.target.value))}
+                  onChange={(e) => setFlats(Math.max(1, Number(e.target.value)))}
                   className="w-full h-2 bg-slate-200 rounded-lg cursor-pointer accent-[#635BFF]"
+                  aria-label="Number of flats"
                 />
 
-                <div className="flex justify-between text-[11px] font-semibold text-slate-400 mt-2 px-0.5">
-                  <span className={flats <= 20 ? 'text-[#635BFF] font-bold' : ''}>≤20 (₹299)</span>
-                  <span className={flats > 20 && flats <= 50 ? 'text-[#635BFF] font-bold' : ''}>21–50 (₹499)</span>
-                  <span className={flats > 50 && flats <= 100 ? 'text-[#635BFF] font-bold' : ''}>51–100 (₹899)</span>
-                  <span className={flats > 100 ? 'text-[#635BFF] font-bold' : ''}>100+ (Custom)</span>
+                {/* Slabs ruler */}
+                <div className="grid grid-cols-4 text-[11px] font-medium text-slate-400 mt-2 text-center">
+                  <span>1–20 (₹15/flat)</span>
+                  <span>21–50 (₹12/flat)</span>
+                  <span>51–100 (₹10/flat)</span>
+                  <span>101+ (₹8/flat)</span>
                 </div>
 
                 {/* Quick Presets */}
-                <div className="flex items-center gap-2 mt-4 pt-3 border-t border-slate-200/70">
-                  <span className="text-[10.5px] font-semibold text-slate-400 uppercase tracking-wider">
-                    Quick Pick:
-                  </span>
-                  {[
-                    { label: '15 Flats', val: 15 },
-                    { label: '35 Flats', val: 35 },
-                    { label: '75 Flats', val: 75 },
-                    { label: '100+ Flats', val: 110 },
-                  ].map((p) => (
+                <div className="flex flex-wrap items-center gap-2 mt-5 pt-4 border-t border-slate-200">
+                  <span className="text-xs font-semibold text-slate-400">Quick select:</span>
+                  {[20, 30, 50, 75, 100, 150, 200].map((val) => (
                     <button
-                      key={p.val}
-                      onClick={() => setFlats(p.val)}
-                      className={`text-[11px] font-semibold px-2.5 py-1 rounded-lg border transition-all cursor-pointer ${
-                        flats === p.val || (p.val === 110 && flats > 100)
-                          ? 'bg-[#635BFF] text-white border-[#635BFF]'
-                          : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
-                      }`}
+                      key={val}
+                      type="button"
+                      onClick={() => setFlats(val)}
+                      className={`text-xs font-semibold px-2.5 py-1 rounded-lg border transition-all cursor-pointer ${flats === val
+                        ? 'bg-[#635BFF] text-white border-[#635BFF]'
+                        : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-100'
+                        }`}
                     >
-                      {p.label}
+                      {val}
                     </button>
                   ))}
                 </div>
+
+                {/* Clear Example Note */}
+                <div className="mt-4 pt-3 border-t border-slate-200 text-xs text-slate-500">
+                  <span className="font-semibold text-slate-700">How it works: </span>
+                  {flats <= 20 ? (
+                    <span>{flats} flats × ₹15 = <strong className="text-slate-800">₹{pricing.total}/mo</strong></span>
+                  ) : (
+                    <span>
+                      {pricing.slabs.map((s) => `${s.quantity} × ₹${s.rate}`).join(' + ')} = <strong className="text-slate-800">₹{pricing.total}/mo</strong>
+                    </span>
+                  )}
+                </div>
               </div>
 
-              {/* Module Toggles */}
-              <div className="space-y-2">
-                <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
+              {/* Module Selection */}
+              <div className="space-y-2.5">
+                <span className="text-xs font-bold uppercase tracking-wider text-slate-400 block">
                   Select Modules
-                </div>
+                </span>
 
-                {/* Core (Included) */}
-                <div className="flex items-center justify-between p-3.5 rounded-[16px] bg-purple-50/60 border border-purple-200">
+                {/* Core */}
+                <div className="flex items-center justify-between p-3.5 rounded-2xl bg-purple-50/60 border border-purple-200">
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-[#635BFF] text-white flex items-center justify-center font-bold text-[11px] shadow-xs">
+                    <div className="w-8 h-8 rounded-lg bg-[#635BFF] text-white flex items-center justify-center font-bold text-xs">
                       Core
                     </div>
                     <div>
@@ -162,43 +132,39 @@ export default function PricingCalculator() {
                         <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
                       </div>
                       <div className="text-[11px] text-slate-500">
-                        Invoicing, directory, UPI payments & notice board
+                        Invoicing, directory, payments & notice board
                       </div>
                     </div>
                   </div>
-                  <span className="text-xs font-extrabold text-[#635BFF] bg-white px-3 py-1 rounded-full border border-purple-200 shadow-xs">
-                    {isEnterprise ? 'Custom Pricing' : `₹${coreBasePrice}/mo Included`}
+                  <span className="text-xs font-bold text-[#635BFF] bg-white px-2.5 py-1 rounded-full border border-purple-200">
+                    ₹{pricing.total}/mo
                   </span>
                 </div>
 
-                {/* Security Access */}
+                {/* Security */}
                 <div
                   onClick={() => setHasSecurity(!hasSecurity)}
-                  className={`flex items-center justify-between p-3.5 rounded-[16px] border cursor-pointer transition-all duration-150 ${
-                    hasSecurity
-                      ? 'bg-blue-50/40 border-blue-200 shadow-xs'
-                      : 'bg-slate-50/50 border-slate-200 opacity-60'
-                  }`}
+                  className={`flex items-center justify-between p-3.5 rounded-2xl border cursor-pointer transition-all ${hasSecurity
+                    ? 'bg-blue-50/40 border-blue-200'
+                    : 'bg-slate-50/50 border-slate-200 opacity-60'
+                    }`}
                 >
                   <div className="flex items-center gap-3">
-                    <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
-                      hasSecurity ? 'bg-blue-500 text-white shadow-xs' : 'bg-slate-200 text-slate-500'
-                    }`}>
+                    <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${hasSecurity ? 'bg-blue-500 text-white' : 'bg-slate-200 text-slate-500'
+                      }`}>
                       <Shield className="w-4 h-4" />
                     </div>
                     <div>
-                      <div className="text-xs font-bold text-slate-900">Security Module (Access)</div>
+                      <div className="text-xs font-bold text-slate-900">Gate Security Module</div>
                       <div className="text-[11px] text-slate-500">Guard app, visitor & delivery logs</div>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="text-xs font-bold text-slate-700">+₹99/mo</span>
-                    <div className={`w-8 h-4.5 rounded-full transition-colors relative p-0.5 ${
-                      hasSecurity ? 'bg-blue-500' : 'bg-slate-300'
-                    }`}>
-                      <div className={`w-3.5 h-3.5 rounded-full bg-white transition-transform ${
-                        hasSecurity ? 'translate-x-3.5' : 'translate-x-0'
-                      }`} />
+                    <div className={`w-8 h-4.5 rounded-full transition-colors relative p-0.5 ${hasSecurity ? 'bg-blue-500' : 'bg-slate-300'
+                      }`}>
+                      <div className={`w-3.5 h-3.5 rounded-full bg-white transition-transform ${hasSecurity ? 'translate-x-3.5' : 'translate-x-0'
+                        }`} />
                     </div>
                   </div>
                 </div>
@@ -206,16 +172,14 @@ export default function PricingCalculator() {
                 {/* Facilities */}
                 <div
                   onClick={() => setHasFacility(!hasFacility)}
-                  className={`flex items-center justify-between p-3.5 rounded-[16px] border cursor-pointer transition-all duration-150 ${
-                    hasFacility
-                      ? 'bg-emerald-50/40 border-emerald-200 shadow-xs'
-                      : 'bg-slate-50/50 border-slate-200 opacity-60'
-                  }`}
+                  className={`flex items-center justify-between p-3.5 rounded-2xl border cursor-pointer transition-all ${hasFacility
+                    ? 'bg-emerald-50/40 border-emerald-200'
+                    : 'bg-slate-50/50 border-slate-200 opacity-60'
+                    }`}
                 >
                   <div className="flex items-center gap-3">
-                    <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
-                      hasFacility ? 'bg-emerald-500 text-white shadow-xs' : 'bg-slate-200 text-slate-500'
-                    }`}>
+                    <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${hasFacility ? 'bg-emerald-500 text-white' : 'bg-slate-200 text-slate-500'
+                      }`}>
                       <Wrench className="w-4 h-4" />
                     </div>
                     <div>
@@ -225,154 +189,91 @@ export default function PricingCalculator() {
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="text-xs font-bold text-slate-700">+₹49/mo</span>
-                    <div className={`w-8 h-4.5 rounded-full transition-colors relative p-0.5 ${
-                      hasFacility ? 'bg-emerald-500' : 'bg-slate-300'
-                    }`}>
-                      <div className={`w-3.5 h-3.5 rounded-full bg-white transition-transform ${
-                        hasFacility ? 'translate-x-3.5' : 'translate-x-0'
-                      }`} />
+                    <div className={`w-8 h-4.5 rounded-full transition-colors relative p-0.5 ${hasFacility ? 'bg-emerald-500' : 'bg-slate-300'
+                      }`}>
+                      <div className={`w-3.5 h-3.5 rounded-full bg-white transition-transform ${hasFacility ? 'translate-x-3.5' : 'translate-x-0'
+                        }`} />
                     </div>
                   </div>
                 </div>
-
-                {/* WhatsApp */}
-                <div
-                  onClick={() => setHasWhatsapp(!hasWhatsapp)}
-                  className={`flex items-center justify-between p-3.5 rounded-[16px] border cursor-pointer transition-all duration-150 ${
-                    hasWhatsapp
-                      ? 'bg-amber-50/40 border-amber-200 shadow-xs'
-                      : 'bg-slate-50/50 border-slate-200 opacity-60'
-                  }`}
-                >
-                  <div className="flex items-center gap-3">
-                    <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
-                      hasWhatsapp ? 'bg-amber-500 text-white shadow-xs' : 'bg-slate-200 text-slate-500'
-                    }`}>
-                      <MessageSquare className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <div className="text-xs font-bold text-slate-900">WhatsApp & SMS Notifications</div>
-                      <div className="text-[11px] text-slate-500">Instant invoice & defaulter reminder alerts</div>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-xs font-bold text-slate-700">+₹49/mo</span>
-                    <div className={`w-8 h-4.5 rounded-full transition-colors relative p-0.5 ${
-                      hasWhatsapp ? 'bg-amber-500' : 'bg-slate-300'
-                    }`}>
-                      <div className={`w-3.5 h-3.5 rounded-full bg-white transition-transform ${
-                        hasWhatsapp ? 'translate-x-3.5' : 'translate-x-0'
-                      }`} />
-                    </div>
-                  </div>
-                </div>
-
               </div>
             </div>
 
-            {/* Right Column: Dynamic Price Output Box */}
-            <div className="lg:col-span-5 bg-[#FAFAFC] rounded-[24px] p-6 border border-[#E5E7EB] flex flex-col justify-between">
-              
+            {/* Right Summary Box */}
+            <div className="lg:col-span-5 bg-slate-50 rounded-2xl p-6 border border-slate-200 flex flex-col justify-between space-y-6">
               <div>
-                <div className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">
-                  Estimated Monthly Total
+                <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider block">
+                  Estimated Total
+                </span>
+
+                <div className="flex items-baseline gap-1.5 my-2">
+                  <span className="font-display text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
+                    ₹{monthlyTotal.toLocaleString('en-IN')}
+                  </span>
+                  <span className="text-sm text-slate-500 font-medium">/ month</span>
                 </div>
 
-                {isEnterprise ? (
-                  <div className="my-3 py-2">
-                    <span className="font-display text-3xl sm:text-4xl font-extrabold text-[#0F172A] tracking-tight">
-                      Enterprise Quote
-                    </span>
-                    <p className="text-xs text-slate-500 mt-1">
-                      Custom volume discount for societies with 100+ flats
-                    </p>
-                  </div>
-                ) : (
-                  <>
-                    <div className="flex items-baseline gap-1 my-2">
-                      <span className="font-display text-4xl sm:text-5xl font-extrabold text-[#0F172A] tracking-tight">
-                        ₹{monthlyTotal}
-                      </span>
-                      <span className="text-xs text-slate-400 font-medium">/ month</span>
-                    </div>
-
-                    <div className="inline-flex items-center gap-1.5 text-xs text-emerald-600 font-semibold bg-emerald-50 border border-emerald-200 px-2.5 py-1 rounded-full mb-4">
-                      <Sparkles className="w-3.5 h-3.5" />
-                      <span>~₹{perFlatMonthly} per flat / month</span>
-                    </div>
-                  </>
-                )}
+                <div className="inline-flex items-center gap-1.5 text-xs text-emerald-700 font-semibold bg-emerald-50 border border-emerald-200 px-2.5 py-1 rounded-full mb-5">
+                  <Sparkles className="w-3.5 h-3.5" />
+                  <span>Effective ~₹{pricing.perFlatRate}/flat per month</span>
+                </div>
 
                 {/* Line items */}
-                <div className="space-y-2.5 pt-3 border-t border-slate-200/80 text-xs text-slate-600 mb-5">
-                  <div className="flex justify-between">
-                    <span>
-                      Core Platform ({isEnterprise ? '100+ flats' : `${flats} flats`})
-                    </span>
-                    <span className="font-bold text-slate-900">
-                      {isEnterprise ? 'Custom' : `₹${coreBasePrice}`}
-                    </span>
+                <div className="space-y-2.5 pt-4 border-t border-slate-200 text-xs text-slate-600">
+                  <div className="flex justify-between items-center font-medium">
+                    <span className="text-slate-800">Core Platform ({flats} flats)</span>
+                    <span className="font-bold text-slate-900">₹{pricing.total.toLocaleString('en-IN')}</span>
                   </div>
+
+                  {pricing.slabs.length > 1 && (
+                    <div className="space-y-1 pl-2.5 text-[11px] text-slate-500 border-l-2 border-slate-300 my-1">
+                      {pricing.slabs.map((s, idx) => (
+                        <div key={idx} className="flex justify-between">
+                          <span>{s.label} ({s.quantity} × ₹{s.rate})</span>
+                          <span>₹{s.amount}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
                   {hasSecurity && (
                     <div className="flex justify-between text-blue-600">
-                      <span>Access & Gate Security</span>
+                      <span>Gate Security</span>
                       <span className="font-semibold">+₹{SECURITY_PRICE}</span>
                     </div>
                   )}
                   {hasFacility && (
                     <div className="flex justify-between text-emerald-600">
-                      <span>Facility & Helpdesk</span>
+                      <span>Facility Management</span>
                       <span className="font-semibold">+₹{FACILITY_PRICE}</span>
                     </div>
                   )}
-                  {hasWhatsapp && (
-                    <div className="flex justify-between text-amber-600">
-                      <span>WhatsApp & SMS Alerts</span>
-                      <span className="font-semibold">+₹{WHATSAPP_PRICE}</span>
-                    </div>
-                  )}
-                  
-                  {!isEnterprise && (
-                    <div className="flex justify-between pt-2.5 border-t border-slate-200/60 text-slate-600 font-medium">
-                      <span className="text-emerald-700 font-semibold">Annual Plan (2 mos FREE)</span>
-                      <span className="font-extrabold text-[#635BFF]">₹{annualTotal} / year</span>
-                    </div>
-                  )}
+
+                  <div className="flex justify-between pt-3 border-t border-slate-200 text-slate-600 font-medium">
+                    <span className="text-emerald-700 font-semibold">Annual Billing (2 mos free)</span>
+                    <span className="font-extrabold text-[#635BFF]">₹{annualTotal.toLocaleString('en-IN')} / year</span>
+                  </div>
                 </div>
               </div>
 
-              {/* Action */}
-              <div className="space-y-2 pt-2">
+              {/* Action Button */}
+              <div className="space-y-2">
                 <button
-                  onClick={handleWhatsAppTrial}
-                  className="w-full inline-flex items-center justify-center gap-2 py-3 px-5 rounded-full bg-[#635BFF] hover:bg-[#5249E0] text-white font-semibold text-xs shadow-md shadow-purple-500/20 transition-all duration-150 cursor-pointer"
+                  type="button"
+                  onClick={handleStartTrial}
+                  className="w-full inline-flex items-center justify-center gap-2 py-3 px-5 rounded-full bg-[#635BFF] hover:bg-[#5249E0] text-white font-semibold text-xs shadow-md shadow-purple-500/20 transition-all cursor-pointer"
                 >
-                  <span>{isEnterprise ? 'Contact Enterprise Sales' : 'Start 30-Day Free Trial'}</span>
+                  <span>Start 30-Day Free Trial</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </button>
-                <div className="text-center text-[10.5px] text-slate-400">
-                  No credit card required • Instant setup on WhatsApp
-                </div>
+                <p className="text-center text-[11px] text-slate-400">
+                  No credit card required • Instant setup
+                </p>
               </div>
 
             </div>
 
           </div>
-
-          {/* Bottom Enterprise Strip */}
-          <div className="mt-6 pt-4 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs">
-            <span className="text-slate-500">
-              Need custom gate hardware integration, RFID boom barriers, or have 100+ flats?
-            </span>
-            <button
-              onClick={() => openWhatsApp('Hi, I want to talk to enterprise sales for custom society setup.')}
-              className="font-bold text-[#635BFF] hover:text-[#5249E0] flex items-center gap-1 cursor-pointer bg-transparent border-0 p-0"
-            >
-              <span>Contact Enterprise Sales</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </button>
-          </div>
-
         </div>
 
       </div>
