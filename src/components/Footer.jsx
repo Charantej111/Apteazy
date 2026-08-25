@@ -40,7 +40,7 @@ export default function Footer() {
 
             <div className="pt-2">
               <button
-                onClick={() => openWhatsApp('Hi, I want to start a free trial of Apteazy for my apartment')}
+                onClick={() => openWhatsApp('Hi, I want to start a 60-day free trial of Apteazy for my apartment')}
                 className="inline-flex items-center gap-2 bg-[#635BFF] hover:bg-[#5249E0] text-white text-xs font-semibold px-5 py-2.5 rounded-full transition-colors shadow-sm cursor-pointer"
               >
                 <span>Start Free Trial</span>

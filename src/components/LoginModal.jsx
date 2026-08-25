@@ -131,7 +131,7 @@ export default function LoginModal({ isOpen, onClose }) {
               <div className="flex flex-col gap-2.5 pt-2 max-w-sm mx-auto">
                 {/* Button 1: Start Free Trial */}
                 <button
-                  onClick={() => openWhatsApp('Hi, I want to start a free trial of Apteazy for my apartment')}
+                  onClick={() => openWhatsApp('Hi, I want to start a 60-day free trial of Apteazy for my apartment')}
                   className="w-full py-3 px-6 rounded-full bg-[#635BFF] hover:bg-[#5249E0] text-white font-bold text-xs sm:text-sm shadow-[0_6px_18px_rgba(99,91,255,0.3)] transition-all cursor-pointer flex items-center justify-center gap-2"
                 >
                   <Sparkles className="w-4 h-4" />

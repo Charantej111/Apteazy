@@ -67,10 +67,10 @@ export default function AppShowcase() {
                 <motion.button
                   whileHover={{ scale: 1.03, y: -2 }}
                   whileTap={{ scale: 0.98 }}
-                  onClick={() => openWhatsApp('Hi, I want to start a free trial of Apteazy for my apartment')}
+                  onClick={() => openWhatsApp('Hi, I want to start a 60-day free trial of Apteazy for my apartment')}
                   className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-[#635BFF] hover:bg-[#5249E0] text-white font-bold text-[14px] shadow-[0_4px_16px_rgba(99,91,255,0.3)] transition-colors cursor-pointer"
                 >
-                  <span>Start 30-Day Free Trial</span>
+                  <span>Start 60-Day Free Trial</span>
                   <ArrowRight className="w-4 h-4 stroke-[2.5]" />
                 </motion.button>
 

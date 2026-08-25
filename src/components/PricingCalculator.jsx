@@ -27,7 +27,7 @@ export default function PricingCalculator() {
     const addonText = activeAddons.length > 0 ? ` with ${activeAddons.join(', ')}` : '';
 
     openWhatsApp(
-      `Hi, I want to start a 30-day free trial of Apteazy for my society (${flats} flats, Base: ₹${pricing.total}/mo${addonText}, Total: ₹${monthlyTotal}/mo).`
+      `Hi, I want to start a 60-day free trial of Apteazy for my society (${flats} flats, Base: ₹${pricing.total}/mo${addonText}, Total: ₹${monthlyTotal}/mo).`
     );
   };
 
@@ -263,7 +263,7 @@ export default function PricingCalculator() {
                   onClick={handleStartTrial}
                   className="w-full inline-flex items-center justify-center gap-2 py-3 px-5 rounded-full bg-[#635BFF] hover:bg-[#5249E0] text-white font-semibold text-xs shadow-md shadow-purple-500/20 transition-all cursor-pointer"
                 >
-                  <span>Start 30-Day Free Trial</span>
+                  <span>Start 60-Day Free Trial</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </button>
                 <p className="text-center text-[11px] text-slate-400">

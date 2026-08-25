@@ -1,5 +1,5 @@
 export const WHATSAPP_NUMBER = '917799012354';
-export const DEFAULT_WA_MESSAGE = 'Hi, I want to start a free trial of Apteazy for my apartment';
+export const DEFAULT_WA_MESSAGE = 'Hi, I want to start a 60-day free trial of Apteazy for my apartment';
 
 export const openWhatsApp = (customMessage) => {
   const message = customMessage || DEFAULT_WA_MESSAGE;

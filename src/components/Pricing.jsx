@@ -203,7 +203,7 @@ export default function Pricing() {
                   whileTap={{ scale: 0.98 }}
                   onClick={() =>
                     openWhatsApp(
-                      `Hi, I want to start a 30-day free trial of Apteazy for my apartment (${plan.flats} ${plan.name} Plan)`
+                      `Hi, I want to start a 60-day free trial of Apteazy for my apartment (${plan.flats} ${plan.name} Plan)`
                     )
                   }
                   className={`w-full py-2.5 px-4 rounded-full font-semibold text-[13px] text-center transition-all duration-150 block cursor-pointer ${plan.ctaClass}`}

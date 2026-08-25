@@ -62,7 +62,7 @@ export default function Navbar({ onOpenLogin }) {
               Login
             </button>
             <button
-              onClick={() => openWhatsApp('Hi, I want to start a free trial of Apteazy for my apartment')}
+              onClick={() => openWhatsApp('Hi, I want to start a 60-day free trial of Apteazy for my apartment')}
               className="inline-flex items-center gap-1.5 bg-[#635BFF] hover:bg-[#5249E0] text-white text-[13.5px] font-bold px-5 py-2.5 rounded-full shadow-[0_4px_14px_rgba(99,91,255,0.3)] transition-all duration-150 hover:-translate-y-0.5 cursor-pointer"
             >
               <span>Start Free Trial</span>
@@ -128,7 +128,7 @@ export default function Navbar({ onOpenLogin }) {
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
-                openWhatsApp('Hi, I want to start a free trial of Apteazy for my apartment');
+                openWhatsApp('Hi, I want to start a 60-day free trial of Apteazy for my apartment');
               }}
               className="text-center py-2.5 text-sm font-bold bg-[#635BFF] text-white rounded-full shadow-md cursor-pointer"
             >

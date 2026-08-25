@@ -85,10 +85,10 @@ export default function Hero() {
             <motion.button
               whileHover={{ scale: 1.03, y: -2 }}
               whileTap={{ scale: 0.98 }}
-              onClick={() => openWhatsApp('Hi, I want to start a free trial of Apteazy for my apartment')}
+              onClick={() => openWhatsApp('Hi, I want to start a 60-day free trial of Apteazy for my apartment')}
               className="px-7 py-3.5 rounded-full bg-[#635BFF] hover:bg-[#5249E0] text-white font-bold text-sm shadow-md hover:shadow-lg transition-all cursor-pointer inline-flex items-center gap-2"
             >
-              <span>Start 30–Day Free Trial</span>
+              <span>Start 60-Day Free Trial</span>
               <ArrowRight className="w-4 h-4 stroke-[2.5]" />
             </motion.button>
 
