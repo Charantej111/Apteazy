@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ArrowRight, Check, Send } from 'lucide-react';
 import { openWhatsApp } from '../utils/whatsapp';
 
-export default function Footer({ onOpenLogin }) {
+export default function Footer({ onOpenLogin, onOpenLegal }) {
   const [subscribed, setSubscribed] = useState(false);
   const [email, setEmail] = useState('');
 
@@ -15,13 +15,22 @@ export default function Footer({ onOpenLogin }) {
     }
   };
 
+  const handleLegalClick = (e, tab) => {
+    e.preventDefault();
+    if (onOpenLegal) {
+      onOpenLegal(tab);
+    } else {
+      window.location.hash = `#${tab}`;
+    }
+  };
+
   return (
     <footer className="bg-[#0B0F19] text-slate-400 pt-16 pb-12 border-t border-slate-800">
       <div className="max-w-[1180px] mx-auto px-4 sm:px-6">
-        
+
         {/* Main 4-Column Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-slate-800/80">
-          
+
           {/* Brand Column */}
           <div className="lg:col-span-4 space-y-4">
             <div className="flex items-center">
@@ -33,7 +42,7 @@ export default function Footer({ onOpenLogin }) {
                 />
               </div>
             </div>
-            
+
             <p className="text-xs text-slate-400 max-w-xs leading-relaxed">
               The modern digital operating system for housing societies, gated communities, and residential complexes.
             </p>
@@ -67,7 +76,6 @@ export default function Footer({ onOpenLogin }) {
             <ul className="space-y-2 text-xs">
               <li><a href="#about" className="hover:text-white transition-colors">About Us</a></li>
               <li><a href="#referral" className="hover:text-white transition-colors">Referral Program</a></li>
-              <li><a href="#careers" className="hover:text-white transition-colors">Careers</a></li>
               <li>
                 {onOpenLogin ? (
                   <button onClick={onOpenLogin} className="hover:text-white transition-colors text-left cursor-pointer">
@@ -77,7 +85,14 @@ export default function Footer({ onOpenLogin }) {
                   <a href="#contact" className="hover:text-white transition-colors">Contact Support</a>
                 )}
               </li>
-              <li><a href="#security" className="hover:text-white transition-colors">Security Overview</a></li>
+              <li>
+                <button
+                  onClick={(e) => handleLegalClick(e, 'compliance')}
+                  className="hover:text-white transition-colors text-left cursor-pointer"
+                >
+                  Security & DPDP Overview
+                </button>
+              </li>
             </ul>
           </div>
 
@@ -99,7 +114,7 @@ export default function Footer({ onOpenLogin }) {
               />
               <button
                 type="submit"
-                className="bg-[#635BFF] hover:bg-[#5249E0] text-white p-2.5 rounded-full transition-colors flex-shrink-0"
+                className="bg-[#635BFF] hover:bg-[#5249E0] text-white p-2.5 rounded-full transition-colors flex-shrink-0 cursor-pointer"
                 aria-label="Subscribe"
               >
                 {subscribed ? <Check className="w-3.5 h-3.5" /> : <Send className="w-3.5 h-3.5" />}
@@ -120,9 +135,24 @@ export default function Footer({ onOpenLogin }) {
             © 2026 Apteazy Inc. Built for better communities.
           </div>
           <div className="flex items-center gap-6">
-            <a href="#privacy" className="hover:text-slate-400 transition-colors">Privacy Policy</a>
-            <a href="#terms" className="hover:text-slate-400 transition-colors">Terms of Service</a>
-            <a href="#compliance" className="hover:text-slate-400 transition-colors">RWA Compliance</a>
+            <button
+              onClick={(e) => handleLegalClick(e, 'privacy')}
+              className="hover:text-slate-300 transition-colors cursor-pointer"
+            >
+              Privacy Policy
+            </button>
+            <button
+              onClick={(e) => handleLegalClick(e, 'terms')}
+              className="hover:text-slate-300 transition-colors cursor-pointer"
+            >
+              Terms of Service
+            </button>
+            <button
+              onClick={(e) => handleLegalClick(e, 'compliance')}
+              className="hover:text-slate-300 transition-colors cursor-pointer"
+            >
+              RWA Compliance
+            </button>
           </div>
         </div>
 

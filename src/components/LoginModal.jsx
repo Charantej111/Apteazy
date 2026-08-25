@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, ArrowRight, Phone, ArrowLeft, Calendar, Sparkles, MessageSquare, CheckCircle2 } from 'lucide-react';
 import { openWhatsApp } from '../utils/whatsapp';
 
-export default function LoginModal({ isOpen, onClose }) {
+export default function LoginModal({ isOpen, onClose, onOpenTerms }) {
   const [phone, setPhone] = useState('');
   const [step, setStep] = useState('phone'); // 'phone' | 'unregistered' | 'otp'
   const [imgErr, setImgErr] = useState(false);
@@ -92,7 +92,16 @@ export default function LoginModal({ isOpen, onClose }) {
 
               <div className="pt-2 text-[11.5px] text-slate-400">
                 <span>By continuing, you agree to Apteazy’s </span>
-                <a href="#terms" className="text-[#635BFF] underline">Terms of Service</a>
+                <button
+                  type="button"
+                  onClick={() => {
+                    onClose();
+                    if (onOpenTerms) onOpenTerms();
+                  }}
+                  className="text-[#635BFF] underline hover:text-[#5249E0] cursor-pointer"
+                >
+                  Terms of Service
+                </button>
               </div>
             </div>
           )}

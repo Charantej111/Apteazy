@@ -7,14 +7,14 @@ export default function ReferralBanner() {
   const [imgErr, setImgErr] = useState(false);
 
   const handleCopy = () => {
-    navigator.clipboard.writeText('https://apteazy.ofzen.in/?ref=community');
+    navigator.clipboard.writeText('https://app.apteazy.ofzen.in/');
     setCopied(true);
     setTimeout(() => setCopied(false), 2500);
   };
 
   const handleWhatsApp = () => {
     const text = encodeURIComponent(
-      'Hey! Check out Apteazy for automating apartment society operations & billing: https://apteazy.ofzen.in'
+      'Hey! Check out Apteazy for automating apartment society operations & billing: https://app.apteazy.ofzen.in/'
     );
     window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
   };
@@ -22,7 +22,7 @@ export default function ReferralBanner() {
   const handleEmail = () => {
     const subject = encodeURIComponent('Modern society management platform: Apteazy');
     const body = encodeURIComponent(
-      'Hi,\n\nI recommend checking out Apteazy for automating society operations: https://apteazy.ofzen.in'
+      'Hi,\n\nI recommend checking out Apteazy for automating society operations: https://app.apteazy.ofzen.in/'
     );
     window.open(`mailto:?subject=${subject}&body=${body}`);
   };
