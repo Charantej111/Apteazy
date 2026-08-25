@@ -131,8 +131,12 @@ export default function Footer({ onOpenLogin, onOpenLegal }) {
 
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-          <div>
-            © 2026 Apteazy Inc. Built for better communities.
+          <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-left">
+            <span>© 2026 Apteazy Inc. Built for better communities.</span>
+            <span className="hidden sm:inline text-slate-700">•</span>
+            <span>
+              Made with <span className="text-red-500">❤️</span>, an <a href="https://ofzen.in/" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors font-medium">Ofzen</a> product
+            </span>
           </div>
           <div className="flex items-center gap-6">
             <button
