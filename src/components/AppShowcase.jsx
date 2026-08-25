@@ -17,7 +17,7 @@ export default function AppShowcase() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-40px' }}
           transition={{ duration: 0.7 }}
-          className="bg-white rounded-[36px] p-8 sm:p-12 lg:p-14 border border-[#E8E5F3] shadow-[0_4px_24px_rgba(0,0,0,0.03)] relative overflow-hidden"
+          className="bg-white rounded-[32px] sm:rounded-[36px] p-5 sm:p-10 lg:p-14 border border-[#E8E5F3] shadow-[0_4px_24px_rgba(0,0,0,0.03)] relative overflow-hidden"
         >
           
           {/* Dotted Grid Pattern Overlay */}

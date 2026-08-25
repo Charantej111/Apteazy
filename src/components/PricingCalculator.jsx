@@ -76,7 +76,7 @@ export default function PricingCalculator() {
                 />
 
                 {/* Slabs ruler */}
-                <div className="grid grid-cols-4 text-[11px] font-medium text-slate-400 mt-2 text-center">
+                <div className="grid grid-cols-4 text-[10px] sm:text-[11px] font-medium text-slate-400 mt-2 text-center leading-tight">
                   <span>1–20 (₹15/flat)</span>
                   <span>21–50 (₹12/flat)</span>
                   <span>51–100 (₹10/flat)</span>

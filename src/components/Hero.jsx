@@ -186,13 +186,13 @@ export default function Hero() {
                 <span>{isPlaying ? 'PLAYING' : 'PAUSED'}</span>
               </button>
               {/* Progress Scrubber Line */}
-              <div className="flex-1 mx-4 h-1 bg-white/20 rounded-full overflow-hidden">
+              <div className="flex-1 mx-2.5 sm:mx-4 h-1 bg-white/20 rounded-full overflow-hidden">
                 <div className={`h-full bg-[#635BFF] rounded-full transition-all duration-300 ${isPlaying ? 'w-2/3' : 'w-1/3'}`} />
               </div>
-              <div className="flex items-center gap-3 text-slate-300">
-                <Volume2 className="w-3.5 h-3.5 opacity-50" />
+              <div className="flex items-center gap-2 sm:gap-3 text-slate-300">
+                <Volume2 className="w-3.5 h-3.5 opacity-70" />
                 <Maximize2 className="w-3.5 h-3.5" />
-                <MoreVertical className="w-3.5 h-3.5" />
+                <MoreVertical className="w-3.5 h-3.5 hidden sm:block" />
               </div>
             </div>
 

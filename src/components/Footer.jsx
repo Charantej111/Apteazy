@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ArrowRight, Check, Send } from 'lucide-react';
 import { openWhatsApp } from '../utils/whatsapp';
 
-export default function Footer() {
+export default function Footer({ onOpenLogin }) {
   const [subscribed, setSubscribed] = useState(false);
   const [email, setEmail] = useState('');
 
@@ -68,7 +68,15 @@ export default function Footer() {
               <li><a href="#about" className="hover:text-white transition-colors">About Us</a></li>
               <li><a href="#referral" className="hover:text-white transition-colors">Referral Program</a></li>
               <li><a href="#careers" className="hover:text-white transition-colors">Careers</a></li>
-              <li><a href="#contact" className="hover:text-white transition-colors">Contact Support</a></li>
+              <li>
+                {onOpenLogin ? (
+                  <button onClick={onOpenLogin} className="hover:text-white transition-colors text-left cursor-pointer">
+                    Resident Portal Login
+                  </button>
+                ) : (
+                  <a href="#contact" className="hover:text-white transition-colors">Contact Support</a>
+                )}
+              </li>
               <li><a href="#security" className="hover:text-white transition-colors">Security Overview</a></li>
             </ul>
           </div>
