@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <!-- Left Leg: Vibrant Violet-Purple -->
+    <linearGradient id="apz-left" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8B5CF6" />
+      <stop offset="60%" stop-color="#635BFF" />
+      <stop offset="100%" stop-color="#5B21B6" />
+    </linearGradient>
+
+    <!-- Right Leg: Deep Contrast Indigo -->
+    <linearGradient id="apz-right" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5B21B6" />
+      <stop offset="60%" stop-color="#3B1B94" />
+      <stop offset="100%" stop-color="#241066" />
+    </linearGradient>
+  </defs>
+
+  <!-- Crisp High-Contrast White Squircle Container Tile (Matches standard app icons) -->
+  <rect width="64" height="64" rx="16" fill="#FFFFFF" />
+  <rect x="0.75" y="0.75" width="62.5" height="62.5" rx="15.25" stroke="#E2E8F0" stroke-width="1.5" fill="none" />
+
+  <!-- Centered Apteazy Emblem Inside Tile -->
+  <g transform="translate(6, 6) scale(0.8125)">
+    <!-- Left Arch of the 'A' -->
+    <path 
+      d="M32 4 C34 4 36 6 37 8 L60 54 C62 57 60 60 56 60 H48 C45 60 43 58 41 55 L32 36 L23 55 C21 58 19 60 16 60 H8 C4 60 2 57 4 54 L27 8 C28 6 30 4 32 4 Z" 
+      fill="url(#apz-left)" 
+    />
+
+    <!-- Right Shaded Leg Overlay -->
+    <path 
+      d="M32 4 C34 4 36 6 37 8 L60 54 C62 57 60 60 56 60 H48 C45 60 43 58 41 55 L32 36 L32 4 Z" 
+      fill="url(#apz-right)" 
+    />
+
+    <!-- Inner White House Silhouette -->
+    <path 
+      d="M32 20 L45 33 V60 H19 V33 L32 20 Z" 
+      fill="#FFFFFF" 
+    />
+
+    <!-- Windows (2x2 Grid) in Violet-Purple -->
+    <rect x="26" y="34" width="4.5" height="4.5" rx="1" fill="#635BFF" />
+    <rect x="33.5" y="34" width="4.5" height="4.5" rx="1" fill="#635BFF" />
+    <rect x="26" y="41" width="4.5" height="4.5" rx="1" fill="#635BFF" />
+    <rect x="33.5" y="41" width="4.5" height="4.5" rx="1" fill="#635BFF" />
+
+    <!-- Center Entrance Doorway -->
+    <path 
+      d="M28 60 V50 C28 48.5 29.5 47.5 31 47.5 H33 C34.5 47.5 36 48.5 36 50 V60 H28 Z" 
+      fill="#241066" 
+    />
+  </g>
+</svg>
